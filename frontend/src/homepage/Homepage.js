@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import SearchForm from "../common/SearchForm";
-// import getMovie from "../api/MovieDatabaseApi";
+import MovieList from "../movies/MovieList";
+import "./Homepage.css"
 
 /** Homepage for Movie Maker Journal
  * 
@@ -16,19 +16,8 @@ import SearchForm from "../common/SearchForm";
 
 function Homepage(){
     const currentUser = useContext(UserContext);
-    // const [movie, setMovie] = useState(null);
-    const [search, setSearch] = useState('');
+
     console.debug("Homepage", "currentUser=", currentUser);
-
-    const onChange = (e) => {
-        const searchTerm = e.target.value;
-        setSearch(searchTerm);
-        console.log(searchTerm)
-    }
-
-    // const onClick = () => {
-    //     const response = await axios.
-    // }
 
     return (
         <div className="Homepage">
@@ -55,8 +44,7 @@ function Homepage(){
                 )}
             </div>
             <div>
-                <SearchForm />
-                <input onChange={onChange} value={search}></input>
+                <MovieList />
             </div>
         </div>
     )
