@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 
-
-function SearchForm({searchFor}){
+function SearchForm({search}){
     const [searchTerm, setSearchTerm] = useState([]);
 
     function handleSubmit(e){
         e.preventDefault();
-        searchFor(searchTerm.trim() || undefined)
-        setSearchTerm(searchTerm.trim());
+        console.log(e.target.value)
+        search(searchTerm || undefined)
+        setSearchTerm(searchTerm);
     }
 
     function handleChange(e){
+        console.log(e.target.value)
         setSearchTerm(e.target.value);
     }
 

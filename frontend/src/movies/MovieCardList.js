@@ -3,15 +3,14 @@ import MovieCard from "./MovieCard";
 
 /** Display list of movies
  * 
- * 
  */
 
 function MovieCardList ({movies}){
     console.debug("MovieCardList", "movies=", movies);
 
     return (
-        <div>
-            {movies.map(movie => (
+        <div className="Card">
+            {movies.results.map(movie => (
                 <MovieCard
                     key={movie.id}
                     id={movie.id}

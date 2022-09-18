@@ -44,7 +44,7 @@ router.get('/movie/:movie_id', async (req, res, next) => {
 
     } catch (err){
         console.log(err)
-        return res.send('error')
+        return res.send(NotFoundError)
     }
 })
 

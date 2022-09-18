@@ -1,12 +1,13 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import { Route, Routes } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import SearchForm from "../common/SearchForm";
-// import getMovie from "../api/MovieDatabaseApi";
+import MovieList from "../movies/MovieList";
+import Navigation from "../routes-nav/Navigation";
+import "./Homepage.css"
 
 /** Homepage for Movie Maker Journal
  * 
- * Displays welcome messae to user and allows user to create
+ * Displays welcome message to user and allows user to create
  * login and/or search for movies
  * 
  * Routed at /
@@ -16,24 +17,15 @@ import SearchForm from "../common/SearchForm";
 
 function Homepage(){
     const currentUser = useContext(UserContext);
-    // const [movie, setMovie] = useState(null);
-    const [search, setSearch] = useState('');
+
     console.debug("Homepage", "currentUser=", currentUser);
-
-    const onChange = (e) => {
-        const searchTerm = e.target.value;
-        setSearch(searchTerm);
-        console.log(searchTerm)
-    }
-
-    // const onClick = () => {
-    //     const response = await axios.
-    // }
 
     return (
         <div className="Homepage">
+            <Navigation />
             <div className="container text-center">
-                <h1 className="font-weight-bold">Welcome, the next movie journey awaits</h1>
+                <h1>The Movie Maker Journal</h1>
+                <h2 className="font-weight-bold">Welcome, the next movie journey awaits</h2>
                 <p className="lead">Search for your next movie!</p>
 
                 {currentUser 
@@ -55,8 +47,7 @@ function Homepage(){
                 )}
             </div>
             <div>
-                <SearchForm />
-                <input onChange={onChange} value={search}></input>
+                <MovieList />
             </div>
         </div>
     )

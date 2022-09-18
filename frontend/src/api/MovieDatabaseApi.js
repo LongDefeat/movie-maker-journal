@@ -49,4 +49,4 @@ class MovieDatabaseApi {
 }
 
 /** uri encode component if search movie path doesn't work (turns space into %20) */
-export default {MovieDatabaseApi};
+export default MovieDatabaseApi;

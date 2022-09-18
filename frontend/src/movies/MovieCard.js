@@ -1,5 +1,9 @@
-import React, { useContext, useState } from "react";
-import UserContext from "../auth/UserContext";
+import React from "react";
+import Card from 'react-bootstrap/card';
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./MovieCard.css"
 
 /** Show limited info about a movie
  * 
@@ -10,34 +14,32 @@ import UserContext from "../auth/UserContext";
  * MovieCardList --> MovieCard
  */
 
-function MovieCard({ title, poster_path, overview, vote_average, release_date }) {
-
-    // const {hasSeenMovie, hasNotSeenMovie} = useContext(UserContext);
-
-    // const [seen, setSeen] = useState();
-
-    // React.useEffect(function updateSeenMovieStatus(){
-    //     console.debug("MovieCard useEffect updateSeenMovieStatus", "id=", movie_id)
-    // }, [movie_id, hasSeenMovie]);
-
-    // // sets movie as seen
-    // async function handleSeenMovie(e){
-    //     if(hasSeenMovie(movie_id)) return;
-    //     hasNotSeenMovie((movie_id));
-    //     setSeen(true);
-    // }
+function MovieCard({ title, poster, overview, voteAverage, releaseDate }) {
 
     return (
-        <div className="MovieCard card">
-            <div className="card-body">
-                <h3>{title}</h3>
-                <img src={poster_path}></img>
-                <p>{overview}</p>
-                <p>{vote_average}</p>
-                <p>{release_date}</p>
-                <button className="btn btn-danger font-weight-bold text-uppercase float-right">Seen</button>
-            </div>
+        
+        <div className="MovieCard">
+            <Row className="g-4">
+                {Array.from ({length: 1}).map((_, idx) =>(
+                    <Col xs={3} md={4}>
+                      <Card style={{width: '18rem'}} className="cards">
+                            <Card.Body>
+                                <Card.Title>{title}</Card.Title>
+                                <Card.Img variant="top" src={{poster}} />
+                                <Card.Text>
+                                    <p>{overview}</p>
+                                    <p>Average User Rating: {voteAverage}</p>
+                                    <p>Released: {releaseDate}</p>
+                                </Card.Text>
+                                <Button variant="primary" className="font-weight-bold text-uppercase float-right">Seen</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                ))}
+              
+            </Row>
         </div>
+        
     )
 }
 

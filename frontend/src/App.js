@@ -1,12 +1,14 @@
 import React from "react";
 import './App.css';
+import SignupForm from "./auth/SignupForm";
 import Homepage from "./homepage/Homepage";
+// import ProfileForm from "./profiles/ProfileForm";
 
 function App() {
   return (
     <div className="App">
-      <h1>The Movie Maker Journal</h1>
       <Homepage />
+      <SignupForm />
     </div>
   );
 }
