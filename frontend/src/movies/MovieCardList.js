@@ -1,5 +1,6 @@
 import React from "react";
 import MovieCard from "./MovieCard";
+import {Card} from "react-bootstrap";
 
 /** Display list of movies
  * 
