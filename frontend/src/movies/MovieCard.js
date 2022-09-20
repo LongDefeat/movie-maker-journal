@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/card';
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./MovieCard.css"
+import "./MovieCard.css";
 
 /** Show limited info about a movie
  * 
@@ -16,6 +16,8 @@ import "./MovieCard.css"
 
 function MovieCard({ title, poster, overview, voteAverage, releaseDate }) {
 
+    let basePosterPath = `https://image.tmdb.org/t/p/w500`
+
     return (
         
         <div className="MovieCard">
@@ -25,7 +27,7 @@ function MovieCard({ title, poster, overview, voteAverage, releaseDate }) {
                       <Card style={{width: '18rem'}} className="cards">
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
-                                <Card.Img variant="top" src={{poster}} />
+                                <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
                                 <Card.Text>
                                     <p>{overview}</p>
                                     <p>Average User Rating: {voteAverage}</p>

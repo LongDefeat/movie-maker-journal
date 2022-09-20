@@ -9,12 +9,12 @@ function Navigation() {
      
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">MMJ</Navbar.Brand>
+          <Navbar.Brand href="/"> MMJ </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Favorites</Nav.Link>
-            <Nav.Link href="#pricing">Log In</Nav.Link>
-            <Nav.Link href="#signup">Sign Up</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="#">Favorites</Nav.Link>
+            <Nav.Link href="#">Log In</Nav.Link>
+            <Nav.Link href="/signup">Sign Up</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

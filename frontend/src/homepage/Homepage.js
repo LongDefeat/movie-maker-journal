@@ -2,8 +2,8 @@ import React, {useContext} from "react";
 import { Route, Routes } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import MovieList from "../movies/MovieList";
+import "./Homepage.css";
 import Navigation from "../routes-nav/Navigation";
-import "./Homepage.css"
 
 /** Homepage for Movie Maker Journal
  * 
@@ -23,6 +23,7 @@ function Homepage(){
     return (
         <div className="Homepage">
             <Navigation />
+            
             <div className="container text-center">
                 <h1>The Movie Maker Journal</h1>
                 <h2 className="font-weight-bold">Welcome, the next movie journey awaits</h2>
