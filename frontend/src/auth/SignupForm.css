@@ -1,4 +1,7 @@
-.SignupForm {
+.form-signup{
     background-color: #FFA500;
-    height: 500px;
+    width: 800px;
+    border: 1px solid #2d2d2d;
+    display: inline-block;
+    padding-top: 12px;
 }
