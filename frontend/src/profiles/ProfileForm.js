@@ -3,6 +3,7 @@ import UserDataBaseApi from "../api/UserDatabaseApi";
 // import UserContext from "../auth/UserContext";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Navigation from "../routes-nav/Navigation";
 import "./ProfileForm.css"
 
 function ProfileForm(){
@@ -21,6 +22,7 @@ function ProfileForm(){
     return (
         <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4 ProfileForm">
             <h3>Profile</h3>
+            <Navigation />
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

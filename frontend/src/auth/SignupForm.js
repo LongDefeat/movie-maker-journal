@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Navigation from "../routes-nav/Navigation";
+
 
 
 function SignupForm ({signup}) {
@@ -37,6 +39,7 @@ function SignupForm ({signup}) {
 
     return (
         <div className="SignupForm">
+            <Navigation />
             <Form>
                 <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                     <h2 className="mb-3">Sign Up</h2>

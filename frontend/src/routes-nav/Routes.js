@@ -4,6 +4,7 @@ import Homepage from "../homepage/Homepage";
 import ProfileForm from "../profiles/ProfileForm";
 import SignupForm from "../auth/SignupForm";
 import Navigation from "../routes-nav/Routes";
+import LoginForm from "../auth/LoginForm";
 
 
 /** Site-wide routes.
@@ -14,23 +15,22 @@ import Navigation from "../routes-nav/Routes";
  * Visiting a non-existant route redirects to homepage.
  */
 
-function RoutesFunc({login, signup}){
+function RoutesFunc(){
 
 
     return (
         <div>
-            <Navigation />
-            <Routes>
-                
-                <Route path="/" element={<Homepage/>} />
+                <Routes>
+                    
+                    <Route path="/" element={<Homepage/>} />
 
-                <Route path="/profile" element={<ProfileForm/>} />
+                    <Route path="/profile" element={<ProfileForm/>} />
 
-                <Route path="/signup" element={<SignupForm/>} />
+                    <Route path="/login" element={<LoginForm/>} />
 
+                    <Route path="/signup" element={<SignupForm/>} />
 
-
-            </Routes>
+                </Routes>
         </div>
     )
 }
