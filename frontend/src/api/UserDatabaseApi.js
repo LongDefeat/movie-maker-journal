@@ -33,3 +33,5 @@ class UserDatabaseApi {
         return res.movie_id;
     } 
 }
+
+export default UserDatabaseApi;

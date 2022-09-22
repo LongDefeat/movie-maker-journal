@@ -13,7 +13,7 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#">Favorites</Nav.Link>
-            <Nav.Link href="#">Log In</Nav.Link>
+            <Nav.Link href="/login">Log In</Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
           </Nav>
         </Container>

@@ -26,7 +26,7 @@ function SignupForm ({signup}) {
         e.preventDefault();
         let res = await signup(formData);
         if (res.success){
-           console.log("successfully added user")
+           navigate("/")
         } else {
             console.log(res.errors);
         }
@@ -40,10 +40,10 @@ function SignupForm ({signup}) {
 
     return (
         <div className="SignupForm">
-            <Navigation />
             <Form className="form-signup">
                 <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                     <h2 className="mb-3">Sign Up</h2>
+                    <p className="welcome-message">Meet other movie makers and memorialize your movie experiences</p>
 
                     <Form.Group className="mb-3" controlId="formBasicUsername">
                         <Form.Label>Username</Form.Label>

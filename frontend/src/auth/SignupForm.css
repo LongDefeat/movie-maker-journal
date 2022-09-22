@@ -5,3 +5,7 @@
     display: inline-block;
     padding-top: 12px;
 }
+
+.welcome-message{
+    color: rgb(106, 108, 91);
+}
