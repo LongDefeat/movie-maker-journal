@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import MovieList from "../movies/MovieList";
 import "./Homepage.css";
-import Navigation from "../routes-nav/Navigation";
 
 /** Homepage for Movie Maker Journal
  * 
@@ -19,11 +18,11 @@ function Homepage(){
     const currentUser = useContext(UserContext);
 
     console.debug("Homepage", "currentUser=", currentUser);
+    console.log("hello i am working", currentUser);
 
     return (
         <div className="Homepage">
-            <Navigation />
-            
+           
             <div className="container text-center">
                 <h1>The Movie Maker Journal</h1>
                 <h2 className="font-weight-bold">Welcome, the next movie journey awaits</h2>

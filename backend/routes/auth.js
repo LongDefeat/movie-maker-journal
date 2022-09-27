@@ -38,14 +38,17 @@ router.post("/token", async function (req, res, next) {
   });
 
   router.post("/register", async function (req, res, next){
+    console.log("registering a user in auth.js")
     try {
-        const validator = jsonschema.validate(req.body, userAuthSchemaq);
+        const writeObj = {...req.body};
+        delete writeObj.email;
+        const validator = jsonschema.validate(writeObj, userRegisterSchema);
         if (!validator.valid){
             const errs = validator.errors.map(e => e.stack);
             throw new BadRequestError(errs);
         }
 
-        const newUser = await User.register({...userAuthSchema})
+        const newUser = await User.register(writeObj)
         const token = createToken(newUser);
         return res.status(201).json({ token });
     } catch (err){

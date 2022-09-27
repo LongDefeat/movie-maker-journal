@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Navigation from "../routes-nav/Navigation";
 import "./SignupForm.css";
 
 
 
 function SignupForm ({signup}) {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
+    const [signupFormData, setSignupFormData] = useState({
         username: "",
         password: "",
         firstName: "",
@@ -24,7 +23,7 @@ function SignupForm ({signup}) {
 
     async function handleSubmit(e){
         e.preventDefault();
-        let res = await signup(formData);
+        let res = await signup(signupFormData);
         if (res.success){
            navigate("/")
         } else {
@@ -35,7 +34,7 @@ function SignupForm ({signup}) {
     /** Update form data field */
     function handleChange(e) {
         const {name, value} = e.target;
-        setFormData(data => ({...data, [name]: value}));
+        setSignupFormData(data => ({...data, [name]: value}));
     }
 
     return (
@@ -51,7 +50,7 @@ function SignupForm ({signup}) {
                                       type="text"
                                       name="username"
                                       className="form-control"
-                                      value={formData.username}
+                                      value={signupFormData.username}
                                       onChange={handleChange}
                         />
                         
@@ -63,7 +62,7 @@ function SignupForm ({signup}) {
                                       placeholder="Password"
                                       name="password"
                                       className="form-control"
-                                      value={formData.password}
+                                      value={signupFormData.password}
                                       onChange={handleChange} 
                         />
 
@@ -75,7 +74,7 @@ function SignupForm ({signup}) {
                                       name="firstName"
                                       type="text"
                                       className="form-control"
-                                      value={formData.firstName}
+                                      value={signupFormData.firstName}
                                       onChange={handleChange}
                         />
                         
@@ -86,25 +85,25 @@ function SignupForm ({signup}) {
                         <Form.Control placeholder="Enter Last Name" 
                                       name="lastName"
                                       className="form-control"
-                                      value={formData.lastName}
+                                      value={signupFormData.lastName}
                                       onChange={handleChange}
                         />
                         
                     </Form.Group>
                     
                     
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    {/* <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" 
                                       placeholder="Enter email"
                                       className="form-control"
-                                    //   value={formData.email}
+                                      value={signupFormData.email}
                                       onChange={handleChange}
                         />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
-                    </Form.Group>
+                    </Form.Group> */}
                 
                     <Button variant="outline-success" type="submit" onClick={handleSubmit}>
                         Submit

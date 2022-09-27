@@ -15,7 +15,7 @@ import LoginForm from "../auth/LoginForm";
  * Visiting a non-existant route redirects to homepage.
  */
 
-function RoutesFunc(){
+function RoutesFunc({login, signup}){
 
 
     return (
@@ -26,9 +26,9 @@ function RoutesFunc(){
 
                     <Route path="/profile" element={<ProfileForm/>} />
 
-                    <Route path="/login" element={<LoginForm/>} />
+                    <Route path="/login" element={<LoginForm login={login}/>} />
 
-                    <Route path="/signup" element={<SignupForm/>} />
+                    <Route path="/signup" element={<SignupForm signup={signup}/>} />
 
                 </Routes>
         </div>

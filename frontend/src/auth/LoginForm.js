@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Navigation from "../routes-nav/Navigation";
 import "./LoginForm.css"
 
 
 function LoginForm({login}) {
-    const navigate = useNavigate;
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -17,7 +16,8 @@ function LoginForm({login}) {
         e.preventDefault();
         let res = await login(formData);
         if (res.success){
-           console.log("successfully added user")
+           console.log("successfully logged in as user");
+           navigate('/');
         } else {
             console.log(res.errors);
         }
@@ -31,7 +31,6 @@ function LoginForm({login}) {
 
     return (
         <div className="LoginForm">
-            <Navigation />
             <Form className="form-login">
                 <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                     <h2 className="form-title">Log In</h2>

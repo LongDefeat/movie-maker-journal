@@ -24,7 +24,9 @@ function App() {
         try {
           let { username } = jwt.decode(token);
           MovieDatabaseApi.token = token;
+          console.log(username);
           let currentUser = await UserDatabaseApi.getCurrentUser(username);
+          console.log(currentUser);
           setCurrentUser(currentUser);
           // setApplicationIds(new Set(currentUser.applicationse));
         } catch (err){
@@ -50,6 +52,7 @@ function App() {
    * 
    */
   async function signup(signupData){
+    console.log("app.js signup")
     try {
       let token = await UserDatabaseApi.signup(signupData);
       setToken(token);
@@ -63,8 +66,10 @@ function App() {
 
 // Handles site-wide login
 async function login(loginData){
+  console.log('trying to log in...')
   try {
     let token = await UserDatabaseApi.login(loginData);
+    console.log("app.js login function: ", token)
     setToken(token);
     return { success: true };
   } catch (errors){

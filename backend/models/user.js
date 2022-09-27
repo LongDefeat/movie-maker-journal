@@ -21,7 +21,6 @@ const { strictEqual } = require("assert");
 
 class User {
 
-
     static async authenticate(username, password){
         // attempt search for user first
         const result = await db.query(
@@ -31,8 +30,7 @@ class User {
                     last_name AS "lastName",
                     password,
                     created_at AS "createdAt"
-                    is_admin AS "isAdmin"
-             FROM user
+             FROM public.user
              WHERE username = $1`,
              [username],
         );
@@ -42,7 +40,7 @@ class User {
             // compare hashed password to new hash from password
             const isValid = await bcrypt.compare(password, user.password);
             if (isValid === true){
-                delete user.password;
+                // delete user.password;
                 return user;
             }
         }
@@ -57,15 +55,14 @@ class User {
      * Throws BadRequestError on duplicates
      */
 
-     static async register(
-        { username, password, firstName, lastName, email, isAdmin }) {
-      const duplicateCheck = await db.query(
-            `SELECT username
-             FROM users
-             WHERE username = $1`,
-          [username],
-      );
-  
+     static async register({ username, password, firstName, lastName, email }) {
+            const duplicateCheck = await db.query(
+                `SELECT username
+                FROM public.user
+                WHERE username = $1`,
+                [username],
+            );        
+      
       if (duplicateCheck.rows[0]) {
         throw new BadRequestError(`Duplicate username: ${username}`);
       }
@@ -73,23 +70,15 @@ class User {
       const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
   
       const result = await db.query(
-            `INSERT INTO user
-             (username,
-              first_name,
-              last_name,
-              password,
-              created_at,
-              is_admin)
-             VALUES ($1, $2, $3, $4, $5, $6)
-             RETURNING username, first_name AS "firstName", last_name AS "lastName", password, created_at AS "createdAt", is_admin AS "isAdmin"`,
+            `INSERT INTO public.user
+             (username, first_name,last_name, password)
+             VALUES ($1, $2, $3, $4)
+             RETURNING *`,
           [
             username,
-            hashedPassword,
             firstName,
             lastName,
-            password,
-            createdAt,
-            isAdmin,
+            hashedPassword,
           ],
       );
   
@@ -104,6 +93,7 @@ class User {
        */
 
     static async get(username){
+        console.log("getting user...");
         const userRes = await db.query(
             `SELECT username,
                     password,
@@ -111,7 +101,6 @@ class User {
                     last_name AS "lastName",
                     password,
                     created_at AS "createdAt"
-                    is_admin AS "isAdmin"
              FROM user
              WHERE username = $1`,
              [username],
@@ -138,7 +127,7 @@ class User {
      * 
      * Data can include: { firstName, lastName, password, isAdmin }
      * 
-     * REturns { username, firstName, lastName, email, isAdmin }
+     * Returns { username, firstName, lastName, email, isAdmin }
      * 
      * Throws NotFoundError if not found.
      * 
@@ -156,7 +145,7 @@ class User {
             {
                 firstName: "first_name",
                 lastName: "last_name",
-                isAdmin: "is_admin",
+                // isAdmin: "is_admin",
             }
         );
         const usernameVarIdx = "$" + (values.length + 1);
