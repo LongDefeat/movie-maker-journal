@@ -101,7 +101,7 @@ class User {
                     last_name AS "lastName",
                     password,
                     created_at AS "createdAt"
-             FROM user
+             FROM public.user
              WHERE username = $1`,
              [username],
         );

@@ -6,6 +6,7 @@ import MovieDatabaseApi from "./api/MovieDatabaseApi";
 import UserDatabaseApi from "./api/UserDatabaseApi";
 import UserContext from "./auth/UserContext";
 import jwt from "jsonwebtoken";
+import { decodeToken } from "react-jwt";
 import Navigation from "./routes-nav/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";
 
@@ -22,7 +23,8 @@ function App() {
     async function getCurrentUser(){
       if (token){
         try {
-          let { username } = jwt.decode(token);
+          // let { username } = jwt.decode(token);
+          let { username } = decodeToken(token);
           MovieDatabaseApi.token = token;
           console.log(username);
           let currentUser = await UserDatabaseApi.getCurrentUser(username);

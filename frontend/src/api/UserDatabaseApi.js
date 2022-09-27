@@ -27,7 +27,7 @@ class UserDatabaseApi {
     /** Get current user. */
 
     static async getCurrentUser(username){
-        let res = await this.request(`users/${username}`);
+        let res = await this.request(`/users/${username}`);
         console.log("getCurrentUser ", res.user);
         return res.user;
     }
