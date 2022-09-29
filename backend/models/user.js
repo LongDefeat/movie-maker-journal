@@ -112,11 +112,11 @@ class User {
         
         const userWatchedMovies = await db.query(
             `SELECT w.user_id
-            FROM watched_movies AS w
-            WHERE w.username = $1`, [username]
+            FROM user_watched_movies AS w
+            WHERE w.user_id = $1`, [username.user_id]
         );
 
-        user.watched_movies = userWatchedMovies.rows.map(w => w.user_id);
+        user.user_watched_movies = userWatchedMovies.rows.map(w => w.user_id);
         return user;
     }
 

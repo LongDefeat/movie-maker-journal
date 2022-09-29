@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
 import RoutesFunc from "./routes-nav/Routes";
-import { Nav } from "react-bootstrap";
 import MovieDatabaseApi from "./api/MovieDatabaseApi";
 import UserDatabaseApi from "./api/UserDatabaseApi";
 import UserContext from "./auth/UserContext";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import { decodeToken } from "react-jwt";
 import Navigation from "./routes-nav/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -26,7 +25,6 @@ function App() {
           // let { username } = jwt.decode(token);
           let { username } = decodeToken(token);
           MovieDatabaseApi.token = token;
-          console.log(username);
           let currentUser = await UserDatabaseApi.getCurrentUser(username);
           console.log(currentUser);
           setCurrentUser(currentUser);
@@ -54,7 +52,6 @@ function App() {
    * 
    */
   async function signup(signupData){
-    console.log("app.js signup")
     try {
       let token = await UserDatabaseApi.signup(signupData);
       setToken(token);
@@ -68,10 +65,9 @@ function App() {
 
 // Handles site-wide login
 async function login(loginData){
-  console.log('trying to log in...')
   try {
     let token = await UserDatabaseApi.login(loginData);
-    console.log("app.js login function: ", token)
+    console.log("app.js login function token: ", token)
     setToken(token);
     return { success: true };
   } catch (errors){
@@ -82,7 +78,7 @@ async function login(loginData){
 
 
   return (
-    <UserContext.Provider>
+    <UserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className="App">
         <Navigation logout={logout}/>
         <RoutesFunc login={login} signup={signup}/>

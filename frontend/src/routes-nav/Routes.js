@@ -3,8 +3,8 @@ import {Routes, Route} from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import ProfileForm from "../profiles/ProfileForm";
 import SignupForm from "../auth/SignupForm";
-import Navigation from "../routes-nav/Routes";
 import LoginForm from "../auth/LoginForm";
+import PrivateRoute from "./PrivateRoute";
 
 
 /** Site-wide routes.
@@ -29,7 +29,8 @@ function RoutesFunc({login, signup}){
                     <Route path="/login" element={<LoginForm login={login}/>} />
 
                     <Route path="/signup" element={<SignupForm signup={signup}/>} />
-
+                    
+                    {/* <PrivateRoute path=""/> */}
                 </Routes>
         </div>
     )

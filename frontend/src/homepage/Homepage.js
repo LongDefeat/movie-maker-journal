@@ -15,17 +15,17 @@ import "./Homepage.css";
  */
 
 function Homepage(){
-    const currentUser = useContext(UserContext);
+    const {currentUser} = useContext(UserContext);
 
     console.debug("Homepage", "currentUser=", currentUser);
     console.log("hello i am working", currentUser);
 
     return (
         <div className="Homepage">
-           
+            
             <div className="container text-center">
                 <h1>The Movie Maker Journal</h1>
-                <h2 className="font-weight-bold">Welcome, the next movie journey awaits</h2>
+                <h2 className="font-weight-bold">The next movie journey awaits</h2>
                 <p className="lead">Search for your next movie!</p>
 
                 {currentUser 
