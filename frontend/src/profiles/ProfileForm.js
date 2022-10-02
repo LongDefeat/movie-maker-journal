@@ -1,20 +1,19 @@
 import React, { useState, useContext } from "react";
 import UserDataBaseApi from "../api/UserDatabaseApi";
-// import UserContext from "../auth/UserContext";
+import UserContext from "../auth/UserContext";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Navigation from "../routes-nav/Navigation";
 import "./ProfileForm.css"
 
 function ProfileForm(){
-    // const {currentUser, setCurrentUser} = useContext(UserContext)
-    // const [formData, setFormData] = useState({
-    //     firstName: currentUser.firstName,
-    //     lastName: currentUser.lastName,
-    //     email: currentUser.email,
-    //     username: currentUser.username,
-    //     password: "",
-    // });
+    const {currentUser, setCurrentUser} = useContext(UserContext)
+    const [formData, setFormData] = useState({
+        firstName: currentUser.firstName,
+        lastName: currentUser.lastName,
+        username: currentUser.username,
+        password: "",
+    });
     const [formErrors, setFormErrors] = useState([]);
 
     const [saveConfirmed, setSaveConfirmed] = useState(false);

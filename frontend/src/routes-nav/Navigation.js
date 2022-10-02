@@ -16,7 +16,9 @@ function Navigation({ logout }) {
             <Navbar.Brand href="/"> MMJ </Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="#">Journal</Nav.Link>
               <Nav.Link href="#">Favorites</Nav.Link>
+              <Nav.Link href="#">Profile</Nav.Link>
               <Nav.Link className="logout" href="/" onClick={logout}>
                 Logout
               </Nav.Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Card from 'react-bootstrap/card';
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -14,7 +15,7 @@ import "./MovieCard.css";
  * MovieCardList --> MovieCard
  */
 
-function MovieCard({ title, poster, overview, voteAverage, releaseDate }) {
+function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`
 
@@ -33,7 +34,8 @@ function MovieCard({ title, poster, overview, voteAverage, releaseDate }) {
                                     <p>Average User Rating: {voteAverage}</p>
                                     <p>Released: {releaseDate}</p>
                                 </Card.Text>
-                                <Button variant="primary" className="font-weight-bold text-uppercase float-right">Seen</Button>
+                                <Button variant="primary" className="mx-2 font-weight-bold text-uppercase float-right">Seen</Button>
+                                <Link to={`/movies/${id}`}><Button variant="info" className="mx-2 font-weight-bold text-uppercase float-right">Details</Button></Link>
                             </Card.Body>
                         </Card>
                     </Col>
