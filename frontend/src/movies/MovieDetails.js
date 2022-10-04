@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MovieDatabaseApi from "../api/MovieDatabaseApi";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
+import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';
+import UserContext from "../auth/UserContext";
 
 import "./MovieDetails.css";
 
 
-
 function MovieDetail(){
     const {id} = useParams();
+    const {currentUser} = useContext(UserContext);
     
     const [movie, setMovie] = useState(null);
+    const [modalShow, setModalShow] = useState(false);
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`;
 
@@ -28,6 +31,29 @@ function MovieDetail(){
 
 
     console.log(movie);
+
+    function MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                {movie.original_title}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <JournalForm movieId={movie.id} userId={currentUser.id} closeModal={props.onHide}/>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+      }
 
     function displayMovieDetails(){
         return (
@@ -53,8 +79,12 @@ function MovieDetail(){
                     
                 </Row> 
             </Container>
-          <Button variant="primary" color="success" className="mx-2 font-weight-bold text-uppercase float-right">Log Movie</Button>
-
+          <Button onClick={() => setModalShow(true)}variant="primary" color="success" className="mx-2 font-weight-bold  float-right">Log Movie</Button>
+        
+          <MyVerticallyCenteredModal 
+            show={modalShow}
+            onHide={() => setModalShow(false)} 
+          />
             </>
         )
     }

@@ -95,7 +95,8 @@ class User {
     static async get(username){
         console.log("getting user...");
         const userRes = await db.query(
-            `SELECT username,
+            `SELECT id,
+                    username,
                     password,
                     first_name AS "firstName",
                     last_name AS "lastName",
@@ -181,6 +182,40 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
+  /** Add journal entry  */
+    static async addJournalEntry(body, user_id) {
+        console.log(body, user_id);
+        let result = await db.query(
+            `INSERT INTO user_journal
+             (user_id, movie_id, comment)
+             VALUES ($1, $2, $3)
+             RETURNING *`,
+             [
+                user_id,
+                body.movie_id,
+                body.comment,
+             ],
+        )
+        const journalEntry = result.rows[0];
+        
+        return journalEntry;
+    }
+
+  /** Get all journal entries for a given user*/
+    static async getJournalEntryList(user_id){
+        let result = await db.query(
+            `SELECT id,
+                    user_id,
+                    movie_id,
+                    comment,
+                    created_at
+            FROM user_journal
+            WHERE user_id = $1`,
+            [user_id],
+        )
+        const journalEntries = result.rows;
+        return journalEntries;
+    }
   /** NEED A WATCHED MOVIE METHOD FOR USERS
    * 
    * 

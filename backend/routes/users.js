@@ -11,6 +11,7 @@ const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
 const userNewSchema = require("../schemas/userNew.json");
 const userUpdateSchema = require("../schemas/userUpdate.json");
+const { restart } = require("nodemon");
 
 const router = express.Router();
 
@@ -51,6 +52,30 @@ router.get("/:username", async function(req, res, next){
     const user = await User.get(req.params.username);
     return res.json({ user });
   } catch(err){
+    return next(err);
+  }
+});
+
+/** POST Journal Entry/  */
+
+router.post("/:user_id/journal", async function(req, res, next){
+  console.log(req.params);
+  try{
+    const journalEntry = await User.addJournalEntry(req.body, req.params.user_id);
+    return res.status(201).json({journalEntry});
+  } catch(err){
+    return next(err);
+  } 
+});
+
+/** GET all Journal Entries */
+
+router.get("/:user_id/journal-entries", async function(req, res, next){
+  try{
+    const {user_id} = req.params;
+    const journalEntries = await User.getJournalEntryList(user_id);
+    return res.json({journalEntries});
+  } catch (err){
     return next(err);
   }
 })

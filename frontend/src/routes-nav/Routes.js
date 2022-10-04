@@ -6,6 +6,7 @@ import SignupForm from "../auth/SignupForm";
 import LoginForm from "../auth/LoginForm";
 import PrivateRoute from "./PrivateRoute";
 import MovieDetail from "../movies/MovieDetails";
+import JournalList from "../journal/JournalList";
 
 /** Site-wide routes.
  * 
@@ -31,6 +32,9 @@ function RoutesFunc({login, signup}){
                     <Route path="/signup" element={<SignupForm signup={signup}/>} />
 
                     <Route path="/movies/:id" element={<MovieDetail />} />
+
+                    <Route path="/journal-list" element={<JournalList />} />
+
                     
                     {/* <PrivateRoute path=""/> */}
                 </Routes>

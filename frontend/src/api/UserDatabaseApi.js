@@ -39,6 +39,18 @@ class UserDatabaseApi {
         return res.movie_id;
     }
 
+    /** Create Journal entry */
+    static async journalMovieReview(user_id, data){
+        let res = await this.request(`/users/${user_id}/journal`, data, "post");
+        return res.journalEntry;
+    }
+
+    /** Get all journal entries */
+    static async getEntries(user_id){
+        let res = await this.request(`/users/${user_id}/journal-entries`);
+        return res.journalEntries;
+    }
+
     /** Delete movie rating. */
     
     static async deleteMovieRating(movie_id){

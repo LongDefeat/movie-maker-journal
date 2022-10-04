@@ -40,3 +40,11 @@ CREATE TABLE user_roles (
     PRIMARY KEY("id")
 );
 
+CREATE TABLE public.user_journal (
+    id SERIAL,
+    user_id integer GENERATED ALWAYS AS IDENTITY REFERENCES "user"(id) ON DELETE CASCADE, 
+    movie_id integer NOT NULL,
+    comment text,
+    created_at timestamp without time zone DEFAULT now(),
+    PRIMARY KEY ("id")
+)
