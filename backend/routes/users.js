@@ -56,6 +56,15 @@ router.get("/:username", async function(req, res, next){
   }
 });
 
+/** POST / => { user: [ {username, password} ] } */
+router.post("/profile/:user_id", async function (req, res, next){
+  try {
+    const updateProfile = await User.updateProfile(req.body, req.params.user_id);
+  } catch (err){
+    return next(err);
+  }
+})
+
 /** POST Journal Entry/  */
 
 router.post("/:user_id/journal", async function(req, res, next){

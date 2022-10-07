@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MovieDatabaseApi from "../api/MovieDatabaseApi";
-import LoadingSpinner from "../common/LoadingSpinner";
 import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';

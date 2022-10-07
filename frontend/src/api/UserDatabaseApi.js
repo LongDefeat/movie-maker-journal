@@ -65,6 +65,12 @@ class UserDatabaseApi {
         return res.token;
     }
 
+    /** Update profile username/password */
+    static async profile(user_id){
+        let res = await this.request(`/auth/profile/${user_id}`, "post");
+        return res.updateProfile;
+    }
+
     /** Signup for site. */
     static async signup(data) {
         let res = await this.request(`/auth/register`, data, "post");

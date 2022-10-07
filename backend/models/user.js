@@ -216,6 +216,16 @@ class User {
         const journalEntries = result.rows;
         return journalEntries;
     }
+  /** Update profile for a given user */
+  static async updateProfile(user_id){
+    let result = await db.query(
+        `INSERT INTO public.user,
+                (username, password)
+                VALUES($1, $2)
+        RETURNING *`,
+        [username, password]
+    )
+  }
   /** NEED A WATCHED MOVIE METHOD FOR USERS
    * 
    * 
