@@ -141,30 +141,42 @@ class User {
         if (data.password){
             data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
         }
-        const { setCols, values } = sqlForPartialUpdate(
-            data, 
-            {
-                firstName: "first_name",
-                lastName: "last_name",
-                // isAdmin: "is_admin",
-            }
-        );
-        const usernameVarIdx = "$" + (values.length + 1);
+        let result = await db.query(`UPDATE public.user
+                                     SET username = $1,
+                                         password = $2
+                                     WHERE username = $3
+                                     RETURNING username, password, first_name, last_name, created_at
+                                     `,
+                                     [data.username, data.password, username]);
 
-        const querySql = `UPDATE user
-                          SET ${setCols}
-                          WHERE username = ${usernameVarIdx}
-                          RETURNING username, 
-                                    first_name AS "firstName",
-                                    last_name AS "lastName",
-                                    is_admin AS "isAdmin"`;
-        const result = await db.query(querySql, [...values, username]);
         const user = result.rows[0];
 
-        if (!user) throw new NotFoundError(`No user: ${username}`);
-
-        delete user.password;
         return user;
+
+        // const { setCols, values } = sqlForPartialUpdate(
+        //     data, 
+        //     {
+        //         firstName: "first_name",
+        //         lastName: "last_name",
+        //         // isAdmin: "is_admin",
+        //     }
+        // );
+        // const usernameVarIdx = "$" + (values.length + 1);
+
+        // const querySql = `UPDATE user
+        //                   SET ${setCols}
+        //                   WHERE username = ${usernameVarIdx}
+        //                   RETURNING username, 
+        //                             first_name AS "firstName",
+        //                             last_name AS "lastName",
+        //                             is_admin AS "isAdmin"`;
+        // const result = await db.query(querySql, [...values, username]);
+        // const user = result.rows[0];
+
+        // if (!user) throw new NotFoundError(`No user: ${username}`);
+
+        // delete user.password;
+        // return user;
     }   
 
     /** Delete given user from database; returns undefined. */

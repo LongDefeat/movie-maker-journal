@@ -23,24 +23,23 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
         
         <div className="MovieCard">
             <Row className="g-4">
-                {Array.from ({length: 1}).map((_, idx) =>(
+                
                     <Col xs={3} md={4}>
                       <Card style={{width: '18rem'}} className="cards">
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
                                 <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
                                 <Card.Text>
-                                    <p>{overview}</p>
-                                    <p>Average User Rating: {voteAverage}</p>
-                                    <p>Released: {releaseDate}</p>
+                                    <div>{overview}</div>
+                                    <div>Average User Rating: {voteAverage}</div>
+                                    <div>Released: {releaseDate}</div>
                                 </Card.Text>
                                 <Button variant="primary" className="mx-2 font-weight-bold text-uppercase float-right">Seen</Button>
                                 <Link to={`/movies/${id}`}><Button variant="info" className="mx-2 font-weight-bold text-uppercase float-right">Details</Button></Link>
                             </Card.Body>
                         </Card>
                     </Col>
-                ))}
-              
+                             
             </Row>
         </div>
         

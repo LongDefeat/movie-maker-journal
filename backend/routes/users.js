@@ -57,13 +57,13 @@ router.get("/:username", async function(req, res, next){
 });
 
 /** POST / => { user: [ {username, password} ] } */
-router.post("/profile/:user_id", async function (req, res, next){
-  try {
-    const updateProfile = await User.updateProfile(req.body, req.params.user_id);
-  } catch (err){
-    return next(err);
-  }
-})
+// router.post("/profile/:user_id", async function (req, res, next){
+//   try {
+//     const updateProfile = await User.updateProfile(req.body, req.params.user_id);
+//   } catch (err){
+//     return next(err);
+//   }
+// })
 
 /** POST Journal Entry/  */
 
@@ -99,16 +99,17 @@ router.get("/:user_id/journal-entries", async function(req, res, next){
  * Authorization required: admin or same-user-as-:username
 */
 
-router.patch("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.patch("/:username", async function (req, res, next) {
     try {
-        const validator = jsonschema.validate(req.body, userUpdateSchema);
-        if (!validator.valid) {
-          const errs = validator.errors.map(e => e.stack);
-          throw new BadRequestError(errs);
-        }
+        // const validator = jsonschema.validate(req.body, userUpdateSchema);
+        // if (!validator.valid) {
+        //   const errs = validator.errors.map(e => e.stack);
+        //   throw new BadRequestError(errs);
+        // }
     
-        const user = await User.update(req.params.username, req.body);
-        return res.json({ user });
+        const updateProfile = await User.update(req.params.username, req.body);
+        console.log(updateProfile);
+        return res.json({ updateProfile });
       } catch (err) {
         return next(err);
       }

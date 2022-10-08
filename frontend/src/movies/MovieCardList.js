@@ -13,7 +13,7 @@ function MovieCardList ({movies}){
         <div className="Cards ">
             <Row className="g-4">
                 {movies.results.map(movie => (
-                    <Col xs={3} md={4}>
+                    <Col xs={3} md={4} key={movie.id}>
                         <MovieCard
                             key={movie.id}
                             id={movie.id}

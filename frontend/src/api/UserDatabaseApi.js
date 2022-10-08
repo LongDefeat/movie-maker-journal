@@ -66,8 +66,8 @@ class UserDatabaseApi {
     }
 
     /** Update profile username/password */
-    static async profile(user_id){
-        let res = await this.request(`/auth/profile/${user_id}`, "post");
+    static async profile(username, data){
+        let res = await this.request(`/users/${username}`, data, "patch");
         return res.updateProfile;
     }
 

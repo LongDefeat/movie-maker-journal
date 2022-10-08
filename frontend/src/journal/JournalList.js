@@ -5,17 +5,20 @@ import UserDatabaseApi from "../api/UserDatabaseApi";
 
 function JournalList(){
     const [journalEntries, setJournalEntries] = useState(null);
-    const {currentUser} = useContext(UserContext);
+    const currentUser = useContext(UserContext);
+    console.log("Journal List Page: ", currentUser);
 
-    // useEffect(function getJournalEntries(){
-    //     async function fetchJournalEntries(){
-    //         setJournalEntries(await UserDatabaseApi.getEntries(id))};
+    if(currentUser) {
+        useEffect(function getJournalEntries(){
+            async function fetchJournalEntries(){
+                setJournalEntries(await UserDatabaseApi.getEntries(currentUser.id))};
+    
+            fetchJournalEntries();
+    
+        }, [currentUser.id]);
+    } 
 
-    //     fetchJournalEntries();
-
-    // }, [id]);
-
-    // console.log(journalEntries);
+    console.log(journalEntries);
     return (
         <h1>Journal Entries</h1>
     )
