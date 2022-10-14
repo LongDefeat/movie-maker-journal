@@ -7,13 +7,13 @@ import Col from "react-bootstrap/Col";
  */
 
 function MovieCardList ({movies}){
-    console.debug("MovieCardList", "movies=", movies);
+    console.log("MovieCardList", "movies=", movies);
 
     return (
         <div className="Cards ">
-            <Row className="g-4">
-                {movies.results.map(movie => (
-                    <Col xs={3} md={4} key={movie.id}>
+            <Row>
+               {movies.results.length ?  movies.results.map(movie => (
+                    <Col xs={12} md={6} xl={4} key={movie.id}>
                         <MovieCard
                             key={movie.id}
                             id={movie.id}
@@ -24,8 +24,10 @@ function MovieCardList ({movies}){
                             voteAverage={movie.vote_average}
                         />
                     </Col>
-                ))}
+                )) : <p>Sorry, no results were found...</p>}
+             
             </Row>
+               
         </div>
     )
 }

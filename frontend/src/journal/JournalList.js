@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useContext} from "react";
 import UserContext from "../auth/UserContext";
 import UserDatabaseApi from "../api/UserDatabaseApi";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 
 function JournalList(){
     const [journalEntries, setJournalEntries] = useState(null);
     const currentUser = useContext(UserContext);
     console.log("Journal List Page: ", currentUser);
+
 
     if(currentUser) {
         useEffect(function getJournalEntries(){
@@ -17,6 +19,7 @@ function JournalList(){
     
         }, [currentUser.id]);
     } 
+    if (!currentUser) return <LoadingSpinner />;
 
     console.log(journalEntries);
     return (

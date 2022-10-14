@@ -8,6 +8,7 @@ import UserContext from "./auth/UserContext";
 import { decodeToken } from "react-jwt";
 import Navigation from "./routes-nav/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 export const TOKEN_STORAGE_ID = "mmj-token";
 
@@ -76,6 +77,7 @@ async function login(loginData){
   }
 }  
 
+if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <UserContext.Provider value={{currentUser, setCurrentUser}}>

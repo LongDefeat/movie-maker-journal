@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Navigation from "../routes-nav/Navigation";
+import LoadingSpinner from "../common/LoadingSpinner";
 import "./ProfileForm.css"
 
 function ProfileForm(){
@@ -48,6 +49,7 @@ function ProfileForm(){
         setFormErrors([]);
     }
     console.log(updateProfileFormData)
+    if (!currentUser) return <LoadingSpinner />;
 
     return (
         <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4 ProfileForm">
