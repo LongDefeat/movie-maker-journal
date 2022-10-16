@@ -81,7 +81,7 @@ if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <UserContext.Provider value={{currentUser, setCurrentUser}}>
-      <div className="App">
+      <div className="App text-white">
         <Navigation logout={logout}/>
         <RoutesFunc login={login} signup={signup}/>
       </div>

@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function SearchForm({search}){
     const [searchTerm, setSearchTerm] = useState([]);
@@ -17,15 +20,18 @@ function SearchForm({search}){
 
     
     return (
-        <div className="SearchForm mb-4">
-            <form className="form-inline" onSubmit={handleSubmit}>
-                <input
-                className="form-control flex-grow-1"
-                placeholder="Enter Movie"
-                value={searchTerm}
-                onChange={handleChange}>
-                </input>
-                <button type="submit" className="btn btn-primary">Search Movie</button>
+        <div>
+            <form className="my-5" onSubmit={handleSubmit}>
+                
+                    <InputGroup classname="mb-3">
+                        <Form.Control style={{borderRadius: "30px 0px 0px 30px"}} placeholder="Search Movie" 
+                        aria-label="Search Movie"
+                        aria-describedby="basic-addon2" 
+                        value={searchTerm}
+                        onChange={handleChange}/>
+                        <Button style={{borderRadius: "0px 30px 30px 0px"}}type="submit">Search Movie</Button>
+                    </InputGroup>
+                
             </form>
         </div>
     )

@@ -56,14 +56,18 @@ router.get("/:username", async function(req, res, next){
   }
 });
 
-/** POST / => { user: [ {username, password} ] } */
-// router.post("/profile/:user_id", async function (req, res, next){
-//   try {
-//     const updateProfile = await User.updateProfile(req.body, req.params.user_id);
-//   } catch (err){
-//     return next(err);
-//   }
-// })
+/** POST / => { user: [ {user_id, movie_id} ] } 
+ * 
+*/
+router.post("/:user_id/favorites", async function (req, res, next){
+  console.log(req.params, req.body);
+  try{
+    const favorites = await User.addFavorite(req.params.user_id, req.body)
+  } catch (err){
+    return next(err)
+  }
+})
+
 
 /** POST Journal Entry/  */
 

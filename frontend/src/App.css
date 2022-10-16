@@ -1,18 +1,9 @@
 .App {
-  text-align: center;
   font-weight: bold;
-  background-color: rgb(81, 81, 229);
+  background-color: #212529;
   min-height: 100vh;
 }
 
-
-.App-link {
-  color: #61dafb;
-}
-
-h1 {
-  padding-top: 30px;
-}
 
 
 

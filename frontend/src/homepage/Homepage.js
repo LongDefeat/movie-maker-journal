@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
 import {Container} from "react-bootstrap";
-import { Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import MovieList from "../movies/MovieList";
+import PopularMovies from "./PopularMovies";
 import "./Homepage.css";
 
 /** Homepage for Movie Maker Journal
@@ -19,34 +20,26 @@ function Homepage(){
     const {currentUser} = useContext(UserContext);
     
     return (
-        <Container>
+        <Container className="py-5">
             <div className="Homepage">
                 
-                <div className="container text-center">
+                <div>
                     <h1>The Movie Maker Journal</h1>
-                    <h2 className="font-weight-bold">The next movie journey awaits</h2>
-                    <p className="lead">Search for your next movie!</p>
+                    <h3 >Millions of movies to discover... Explore!</h3>
 
                     {currentUser 
                     ? <h2>
                         Welcome Back, {currentUser.firstName || currentUser.username}!
                     </h2>
                     : (
-                        <p>
-                            <Routes>
-                                <Route className="btn btn-primary font-weight-bold mr-3" to="/login">
-                                    Log In
-                                </Route>
-
-                                <Route className="btn btn-primary font-weight-bold mr-3" to="/signup">
-                                    Sign Up
-                                </Route>
-                            </Routes>
-                        </p>
+                        null
                     )}
                 </div>
                 <div>
                     <MovieList />
+                </div>
+                <div>
+                    <PopularMovies />
                 </div>
             </div>
         </Container>
@@ -54,3 +47,14 @@ function Homepage(){
 }
 
 export default Homepage;
+
+
+{/* <Routes>
+<Route className="btn btn-primary font-weight-bold mr-3" to="/login">
+    Log In
+</Route>
+
+<Route className="btn btn-primary font-weight-bold mr-3" to="/signup">
+    Sign Up
+</Route>
+</Routes> */}

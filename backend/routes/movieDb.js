@@ -29,6 +29,20 @@ router.get('/search', async (req, res, next) => {
 
 });
 
+router.get('/popular', async (req, res, next) => {
+    try{
+        const response = await axios.get(`${BASE_URL}/trending/movie/day`, {
+            params:{
+                api_key: API_KEY   
+            }
+        });
+        console.log(response.data);
+        return res.send(response.data);
+    } catch(err){
+        res.send(NotFoundError)
+    }
+})
+
 router.get('/movie/:movie_id', async (req, res, next) => {
     const {movie_id} = req.params;
     console.log(movie_id);

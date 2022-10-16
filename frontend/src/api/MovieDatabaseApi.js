@@ -39,11 +39,19 @@ class MovieDatabaseApi {
         return res;
     }
 
+    /** Get Popular Movies on Mount */
+    static async getPopMovies(){
+        let res = await this.request(`/moviedb/popular`);
+        return res;
+    }
+
     /** Search movie */
     static async searchMovie(searchText){
         let res = await this.request(`/moviedb/search/`, {searchText});
         return res;
     }
+
+    
 
    
 }

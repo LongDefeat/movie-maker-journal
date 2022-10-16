@@ -51,6 +51,12 @@ class UserDatabaseApi {
         return res.journalEntries;
     }
 
+    /** Add favorite movie */
+    static async addFavorite(user_id, movie_id){
+        let res = await this.request(`/users/${user_id}/favorites`, movie_id, "post");
+        return res.favorites;
+    }
+
     /** Delete movie rating. */
     
     static async deleteMovieRating(movie_id){

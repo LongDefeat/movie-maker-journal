@@ -20,13 +20,18 @@ import "./MovieCard.css";
 
 function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
 
-    let basePosterPath = `https://image.tmdb.org/t/p/w500`
+    let basePosterPath = `https://image.tmdb.org/t/p/w500`;
+
+    function addFavorite(){
+        console.log('clicked')
+    };
+    
 
     return (
         <>
                            
             <div className="MovieCard">
-                <Card className="cards">
+                <Card className="cards text-dark">
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
                         <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
@@ -37,7 +42,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
                         </Card.Text>
                         <Button variant="primary" className="mx-2 font-weight-bold text-uppercase float-right"><HiEye /> Seen</Button>
                         <Link to={`/movies/${id}`}><Button variant="info" className="mx-2 font-weight-bold text-uppercase float-right"><GiMagnifyingGlass /> Details</Button></Link>
-                        <Button variant="warning" className="mx-2 font-weight-bold text-uppercase float-right"><GiPopcorn size={20}/>Like</Button>                                    
+                        <Button onClick={() => addFavorite()} variant="warning" className="mx-2 font-weight-bold text-uppercase float-right"><GiPopcorn size={20}/>Like</Button>                                    
                     </Card.Body>
                 </Card>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieDatabaseApi from "../api/MovieDatabaseApi";
 import MovieCardList from "./MovieCardList";
 import SearchForm from "../common/SearchForm";

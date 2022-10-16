@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
+import {FaPencilAlt} from "react-icons/fa";
 
 import "./MovieDetails.css";
 
@@ -41,7 +42,7 @@ function MovieDetail(){
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                {movie.original_title}
+                {movie.original_title} 
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -57,28 +58,34 @@ function MovieDetail(){
     function displayMovieDetails(){
         return (
             <>
-            <Container className="movie-details-container">
+            <Container className="movie-details-container py-5">
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={3} md={6} xl={4}>
                         <Card.Title className="movie-title">{movie.original_title}</Card.Title>
-                        <Card.Img  className="poster" src={`${basePosterPath}${movie.poster_path}`} />
+                        <img  className="img-fluid" src={`${basePosterPath}${movie.poster_path}`} />
                     </Col> 
                     
-                    <Col sm={4}>
+                    <Col sm={3} md={6} xl={4}>
                         <p>Overview: {movie.overview}</p>
                         <Row><p>Runtime: {movie.runtime} minutes</p></Row>
                         <Row><p>Released: {movie.release_date}</p></Row>
+                        <Row><p>Rated {movie.certification}</p></Row>
+
                     </Col>
-                    <Col sm={4}>
+                    <Col sm={3} md={6} xl={4}>
                         <Row><p>Worldwide Revenue: ${movie.revenue}</p></Row>
                         <Row><p>Average User Rating: {movie.vote_average}/10</p></Row>
                         <Row><p>Cast: {movie.cast}</p></Row>
 
                     </Col>
-                    
+                    <Col>
+                      <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
+                    </Col>
+                    <Col>
+                      <Button variant="outline-danger" startIcon={<DeleteIcon />}>Delete</Button>
+                    </Col>
                 </Row> 
             </Container>
-          <Button onClick={() => setModalShow(true)}variant="primary" color="success" className="mx-2 font-weight-bold  float-right">Log Movie</Button>
         
           <MyVerticallyCenteredModal 
             show={modalShow}
@@ -94,8 +101,7 @@ function MovieDetail(){
             displayMovieDetails()
             }
             <div>
-                <Button variant="outlined" startIcon={<DeleteIcon />}>
-                Delete</Button>
+                
             </div>
         </>
     );

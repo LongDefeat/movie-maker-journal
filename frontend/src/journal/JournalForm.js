@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Form, Button} from "react-bootstrap";
-import UserContext from "../auth/UserContext";
 import UserDatabaseApi from "../api/UserDatabaseApi";
+import {FaPencilAlt} from "react-icons/fa";
+import {FiSend} from "react-icons/fi";
 
 
 function JournalForm({movieId, userId, closeModal}){
@@ -34,19 +35,19 @@ function JournalForm({movieId, userId, closeModal}){
     return (
         <Form>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Journal Entry</Form.Label>
+                    <Form.Label>Journal Entry <FaPencilAlt /></Form.Label>
                     <Form.Control name="comment"
                                   value={journalFormData.comment}
                                   onChange={handleChange} 
                                   as="textarea" rows={5} 
-                                  placeholder="What did you think of the movie?" />
+                                  placeholder="Thoughts on the movie?" />
                 </Form.Group>
 
                 <Button variant="primary" type="submit" onClick={() => 
                     {handleSubmit();
                     closeModal()}
                     }>
-                    Submit
+                    Submit <FiSend />
                 </Button>
         </Form>
     )
