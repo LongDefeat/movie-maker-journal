@@ -1,12 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/card';
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import {GiPopcorn} from "react-icons/gi";
-import {HiEye} from "react-icons/hi";
-import {GiMagnifyingGlass} from "react-icons/gi";
+import { Row, Col } from "react-bootstrap";
+import { GiPopcorn } from "react-icons/gi";
+import { HiEye } from "react-icons/hi";
+import { GiMagnifyingGlass } from "react-icons/gi";
 import "./MovieCard.css";
 
 /** Show limited info about a movie

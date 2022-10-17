@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
-import {Container} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Container } from "react-bootstrap";
 import UserContext from "../auth/UserContext";
 import SearchMovieList from "../movies/SearchMovieList";
 import PopularMovies from "./PopularMovies";
 import "./Homepage.css";
+import UpcomingMovies from "./UpcomingMovies";
 
 /** Homepage for Movie Maker Journal
  * 
@@ -41,20 +41,12 @@ function Homepage(){
                 <div>
                     <PopularMovies />
                 </div>
+                <div>
+                    <UpcomingMovies />
+                </div>
             </div>
         </Container>
     )
 }
 
 export default Homepage;
-
-
-{/* <Routes>
-<Route className="btn btn-primary font-weight-bold mr-3" to="/login">
-    Log In
-</Route>
-
-<Route className="btn btn-primary font-weight-bold mr-3" to="/signup">
-    Sign Up
-</Route>
-</Routes> */}

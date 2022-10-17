@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import UserDataBaseApi from "../api/UserDatabaseApi";
 import UserContext from "../auth/UserContext";
 import Alert from "react-bootstrap/Alert";
-import {Row, Col, Form, Button} from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
 import "./ProfileForm.css"
 

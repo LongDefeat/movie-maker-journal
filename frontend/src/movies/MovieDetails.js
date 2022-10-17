@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
-import {FaPencilAlt} from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 import "./MovieDetails.css";
 
 
@@ -18,7 +18,6 @@ function MovieDetail(){
     const [modalShow, setModalShow] = useState(false);
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`;
-
 
 
     useEffect(function getMovieDetailsForUser(){
@@ -73,20 +72,22 @@ function MovieDetail(){
                         <Row><p>Runtime: {movie.runtime} minutes</p></Row>
                         <Row><p>Released: {movie.release_date}</p></Row>
                         <Row><p>Rated {movie.certification}</p></Row>
-
                     </Col>
+
                     <Col sm={3} md={6} xl={4}>
                         <Row><p>Worldwide Revenue: ${movie.revenue}</p></Row>
                         <Row><p>Average User Rating: {movie.vote_average}/10</p></Row>
                         <Row><p>Cast: {movie.cast}</p></Row>
-
                     </Col>
+
                     <Col>
                       <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
                     </Col>
+
                     <Col>
                       <Button variant="outline-danger" startIcon={<DeleteIcon />}>Delete</Button>
                     </Col>
+
                 </Row> 
             </Container>
         

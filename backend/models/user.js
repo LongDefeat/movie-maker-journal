@@ -239,6 +239,17 @@ class User {
     )
   }
 
+  /** Add favorite movie to table */
+  static async addFavoriteMovie(user_id, movie_id){
+    let result = await db.query(
+        `INSERT INTO user_favorite_movies,
+                (user_id, movie_id)
+                VALUES($1, $2)
+        RETURNING *`,
+        [user_id, movie_id]
+    )
+  }
+
   /** Get all favorite movie_ids */
   static async getMovieIds(user_id){
     let result = await db.query(

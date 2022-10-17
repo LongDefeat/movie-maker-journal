@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useContext} from "react";
-import {Container} from "react-bootstrap";
+import React, { useState, useEffect, useContext } from "react";
+import { Container } from "react-bootstrap";
 import UserDatabaseApi from "../api/UserDatabaseApi";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 import MovieCardList from "../movies/MovieCardList";
 
+/** Parent Function --> MovieCard */
 
 function FavoriteList(){
     const [favorites, setFavorites] = useState(null);
@@ -18,10 +19,9 @@ function FavoriteList(){
             setFavorites(favoriteMovies);
             };
             getFavorites(currentUser.id);
-    }, [currentUser.id])
+    }, [currentUser.id]);
 
 
-    
     if (!favorites) return <LoadingSpinner />
     console.log(favorites);
 

@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import UserContext from "../auth/UserContext";
-import {FcFilmReel} from "react-icons/fc"
+import { FcFilmReel } from "react-icons/fc"
 import "./Navigation.css";
 
 function Navigation({ logout }) {

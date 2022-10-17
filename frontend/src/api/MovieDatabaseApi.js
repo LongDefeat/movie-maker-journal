@@ -45,13 +45,17 @@ class MovieDatabaseApi {
         return res;
     }
 
+    /** Get Upcoming Movies on Mount */
+    static async getUpcomingNewMovies(){
+        let res = await this.request(`/moviedb/upcoming`);
+        return res;
+    }
+
     /** Search movie */
     static async searchMovie(searchText){
         let res = await this.request(`/moviedb/search/`, {searchText});
         return res;
-    }
-
-    
+    }    
 
    
 }
