@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {Container} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
-import MovieList from "../movies/MovieList";
+import SearchMovieList from "../movies/SearchMovieList";
 import PopularMovies from "./PopularMovies";
 import "./Homepage.css";
 
@@ -25,7 +25,7 @@ function Homepage(){
                 
                 <div>
                     <h1>The Movie Maker Journal</h1>
-                    <h3 >Millions of movies to discover... Explore!</h3>
+                    <h3>Millions of movies to discover from around the world... Explore!</h3>
 
                     {currentUser 
                     ? <h2>
@@ -36,7 +36,7 @@ function Homepage(){
                     )}
                 </div>
                 <div>
-                    <MovieList />
+                    <SearchMovieList />
                 </div>
                 <div>
                     <PopularMovies />

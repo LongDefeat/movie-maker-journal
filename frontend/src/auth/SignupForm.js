@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import "./SignupForm.css";
+import {Row, Col, Form, Button} from "react-bootstrap";
 
 
 
@@ -38,64 +36,68 @@ function SignupForm ({signup}) {
     }
 
     return (
-        <div className="SignupForm">
-            <Form className="form-signup">
-                <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                    <h2 className="mb-3">Sign Up</h2>
-                    <p className="welcome-message">Meet other movie makers and memorialize your movie experiences</p>
+        <div className="py-5">
+            <Row className="jusify-content-center">
+                <Col lg={12}>
+                    <Form className="form-signup">
+                        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                            <h2 className="mb-3">Sign Up</h2>
+                            <p className="welcome-message">Meet other movie makers and memorialize your movie experiences.</p>
 
-                    <Form.Group className="mb-3" controlId="formBasicUsername">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control placeholder="Username"
-                                      type="text"
-                                      name="username"
-                                      className="form-control"
-                                      value={signupFormData.username}
-                                      onChange={handleChange}
-                        />
+                            <Form.Group className="mb-3" controlId="formBasicUsername">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control placeholder="Username"
+                                            type="text"
+                                            name="username"
+                                            className="form-control"
+                                            value={signupFormData.username}
+                                            onChange={handleChange}
+                                />
+                                
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" 
+                                            placeholder="Password"
+                                            name="password"
+                                            className="form-control"
+                                            value={signupFormData.password}
+                                            onChange={handleChange} 
+                                />
+
+                            </Form.Group>
+                    
+                            <Form.Group className="mb-3">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control placeholder="Enter First Name"
+                                            name="firstName"
+                                            type="text"
+                                            className="form-control"
+                                            value={signupFormData.firstName}
+                                            onChange={handleChange}
+                                />
+                                
+                            </Form.Group>
+
+                            <Form.Group className="mb-3">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control placeholder="Enter Last Name" 
+                                            name="lastName"
+                                            className="form-control"
+                                            value={signupFormData.lastName}
+                                            onChange={handleChange}
+                                />
+                                
+                            </Form.Group>
                         
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" 
-                                      placeholder="Password"
-                                      name="password"
-                                      className="form-control"
-                                      value={signupFormData.password}
-                                      onChange={handleChange} 
-                        />
-
-                    </Form.Group>
-            
-                    <Form.Group className="mb-3">
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control placeholder="Enter First Name"
-                                      name="firstName"
-                                      type="text"
-                                      className="form-control"
-                                      value={signupFormData.firstName}
-                                      onChange={handleChange}
-                        />
-                        
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control placeholder="Enter Last Name" 
-                                      name="lastName"
-                                      className="form-control"
-                                      value={signupFormData.lastName}
-                                      onChange={handleChange}
-                        />
-                        
-                    </Form.Group>
-                
-                    <Button variant="outline-success" type="submit" onClick={handleSubmit}>
-                        Submit
-                    </Button>
-                </div>
-            </Form>
+                            <Button variant="outline-success" type="submit" onClick={handleSubmit}>
+                                Submit
+                            </Button>
+                        </div>
+                    </Form>
+                </Col>
+            </Row>
         </div>
     )
 

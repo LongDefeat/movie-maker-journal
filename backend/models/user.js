@@ -238,6 +238,19 @@ class User {
         [username, password]
     )
   }
+
+  /** Get all favorite movie_ids */
+  static async getMovieIds(user_id){
+    let result = await db.query(
+        `SELECT movie_id
+        FROM user_favorite_movies
+        WHERE user_id = $1`,
+        [user_id],
+    );
+    const favoriteMoviesList = result.rows;
+    console.log(favoriteMoviesList);
+    return favoriteMoviesList;
+  }
   /** NEED A WATCHED MOVIE METHOD FOR USERS
    * 
    * 

@@ -12,8 +12,12 @@ const { createToken } = require("../helpers/tokens");
 const userNewSchema = require("../schemas/userNew.json");
 const userUpdateSchema = require("../schemas/userUpdate.json");
 const { restart } = require("nodemon");
+const axios = require("axios");
 
 const router = express.Router();
+
+const BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = `9a114ae809d1fc32f0105fcd87afe983`;
 
 /** POST / { user } => { user, token }
  * 
@@ -90,6 +94,30 @@ router.get("/:user_id/journal-entries", async function(req, res, next){
     return res.json({journalEntries});
   } catch (err){
     return next(err);
+  }
+})
+
+/** GET all favorite movies */
+
+router.get("/:user_id/favorites", async function(req, res, next){
+  try {
+    const {user_id} = req.params;
+    const favoriteMovies = await User.getMovieIds(user_id);
+    const favMovieIds = favoriteMovies.map(m => m.movie_id);
+    const unresolved = favMovieIds.map(async(id) => {
+      return await axios.get(`${BASE_URL}/movie/${id}`, {
+        params: {
+            api_key: API_KEY,
+        }
+      });
+    }) 
+    const resolved = await Promise.all(unresolved);
+    const favorites = resolved.map(prom => {
+      return prom.data;
+    });
+    return res.json({favorites});
+  } catch (err){
+    return next(err)
   }
 })
 

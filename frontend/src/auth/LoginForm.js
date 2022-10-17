@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {Row, Col, Form, Button} from "react-bootstrap";
-import "./LoginForm.css"
+
 
 
 function LoginForm({login}) {

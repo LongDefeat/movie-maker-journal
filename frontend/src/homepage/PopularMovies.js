@@ -18,7 +18,7 @@ export default function PopularMovies(){
     return (
         <>
             <h1>Popular Movies</h1>
-            <MovieCardList movies={movies} />
+            <MovieCardList movies={movies.results} />
         </>
     )
 }

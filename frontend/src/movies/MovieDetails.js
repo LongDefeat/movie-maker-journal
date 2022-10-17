@@ -6,8 +6,8 @@ import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
 import {FaPencilAlt} from "react-icons/fa";
-
 import "./MovieDetails.css";
+
 
 
 function MovieDetail(){
@@ -18,6 +18,7 @@ function MovieDetail(){
     const [modalShow, setModalShow] = useState(false);
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`;
+
 
 
     useEffect(function getMovieDetailsForUser(){
@@ -31,6 +32,8 @@ function MovieDetail(){
 
 
     console.log(movie);
+    // const date = new Date(movie.release_date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+
 
     function MyVerticallyCenteredModal(props) {
         return (

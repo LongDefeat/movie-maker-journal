@@ -14,7 +14,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
  * 
  */
 
-function MovieList(){
+function SearchMovieList(){
     const [movies, setMovies] = useState(null);
 
     async function search(name){
@@ -27,7 +27,7 @@ function MovieList(){
         <div className="MovieList">
            <SearchForm search={search}/>
             {movies
-                    ? (<MovieCardList movies={movies}/>)
+                    ? (<MovieCardList movies={movies.results}/>)
                     : (null)
             }
         </div>
@@ -35,6 +35,6 @@ function MovieList(){
 
 }
 
-export default MovieList;
+export default SearchMovieList;
 
 

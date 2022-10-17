@@ -26,6 +26,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
         console.log('clicked')
     };
     
+    const date = new Date(releaseDate).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
 
     return (
         <>
@@ -38,7 +39,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
                         <Card.Text>
                             <div>{overview}</div>
                             <div>Average User Rating: {voteAverage}</div>
-                            <div>Released: {releaseDate}</div>
+                            <div>Released: {date}</div>
                         </Card.Text>
                         <Button variant="primary" className="mx-2 font-weight-bold text-uppercase float-right"><HiEye /> Seen</Button>
                         <Link to={`/movies/${id}`}><Button variant="info" className="mx-2 font-weight-bold text-uppercase float-right"><GiMagnifyingGlass /> Details</Button></Link>

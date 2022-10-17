@@ -6,7 +6,7 @@ const { NotFoundError } = require("../expressError");
 
 
 const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = `9a114ae809d1fc32f0105fcd87afe983`
+const API_KEY = `9a114ae809d1fc32f0105fcd87afe983`;
 
 
 router.get('/search', async (req, res, next) => {

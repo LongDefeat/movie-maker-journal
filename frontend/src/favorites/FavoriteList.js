@@ -1,35 +1,36 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import {Container} from "react-bootstrap";
 import UserDatabaseApi from "../api/UserDatabaseApi";
 import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
+import MovieCardList from "../movies/MovieCardList";
 
 
 function FavoriteList(){
     const [favorites, setFavorites] = useState(null);
-    const currentUser = useContext(UserContext);
-
-    // if(currentUser) {
-    //     useEffect(function getJournalEntries(){
-    //         async function fetchJournalEntries(){
-    //             setJournalEntries(await UserDatabaseApi.getEntries(currentUser.id))};
+    const {currentUser} = useContext(UserContext);
+    if (!currentUser) return <LoadingSpinner />
+   
     
-    //         fetchJournalEntries();
-    
-    //     }, [currentUser.id]);
-    // } 
+    useEffect(function getFavoritesOnMount(){
+         async function getFavorites(user_id){
+            let favoriteMovies = await UserDatabaseApi.getFavorites(user_id);
+            setFavorites(favoriteMovies);
+            };
+            getFavorites(currentUser.id);
+    }, [currentUser.id])
 
 
-    async function getFavorites(name){
-        let favoriteMovies = await UserDatabaseApi.getFavorites(user_id);
-        setFavorites(favoriteMovies);
-    };
     
-    if(!favorites) return <LoadingSpinner />
+    if (!favorites) return <LoadingSpinner />
+    console.log(favorites);
 
     return (
-        <>
-        <h1>Favorites List</h1>
-        </>
+        <Container className="py-5 text-center">
+        
+            <h1 className="mb-5">Favorites List</h1>
+            <MovieCardList movies={favorites} />
+        </Container>
     )
 }
 
