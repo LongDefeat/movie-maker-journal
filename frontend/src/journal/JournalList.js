@@ -19,7 +19,7 @@ function JournalList(){
     
         }, [currentUser.id]);
     } 
-    if (!currentUser) return <LoadingSpinner />;
+    // if (!journalEntries) return <LoadingSpinner />;
 
     console.log(journalEntries);
     return (
