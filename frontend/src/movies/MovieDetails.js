@@ -48,7 +48,7 @@ function MovieDetail(){
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <JournalForm movieId={movie.id} userId={currentUser.id} closeModal={props.onHide}/>
+              <JournalForm movieTitle={movie.original_title} movieId={movie.id} userId={currentUser.id} closeModal={props.onHide}/>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>

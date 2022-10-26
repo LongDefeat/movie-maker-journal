@@ -7,7 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 
 function JournalList(){
     const [journalEntries, setJournalEntries] = useState(null);
-    const [movieData, setMovieData] = useState(null);
+    // const [movieData, setMovieData] = useState(null);
     const currentUser = useContext(UserContext);
     console.log("Journal List Page: ", currentUser);
 
@@ -24,25 +24,6 @@ function JournalList(){
         }, [currentUser.id]);
     } 
     if (!journalEntries) return <LoadingSpinner />;
-    
-    const movieIds = journalEntries.map(e => {
-        return e.movie_id;
-    });
-
-    useEffect(function getArrayOfMovies(){
-        // sends array of movie ids
-        async function fetchMovieData(){
-            const unresolved = movieIds.map(async(id) => {
-                return await MovieDatabaseApi.getMovie(id);
-            });
-            const resolved = await Promise.all(unresolved);
-            console.log(resolved);
-
-            // setMovieData(
-            //     await 
-            // );
-        }
-    })
 
 
     console.log(journalEntries);

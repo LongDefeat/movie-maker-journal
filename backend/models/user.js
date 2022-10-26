@@ -199,13 +199,14 @@ class User {
         console.log(body, user_id);
         let result = await db.query(
             `INSERT INTO user_journal
-             (user_id, movie_id, comment)
-             VALUES ($1, $2, $3)
+             (user_id, movie_id, comment, movie_title)
+             VALUES ($1, $2, $3, $5)
              RETURNING *`,
              [
                 user_id,
                 body.movie_id,
                 body.comment,
+                body.movie_title
              ],
         )
         const journalEntry = result.rows[0];

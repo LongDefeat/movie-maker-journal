@@ -6,11 +6,12 @@ import {FaPencilAlt} from "react-icons/fa";
 import {FiSend} from "react-icons/fi";
 
 
-function JournalForm({movieId, userId, closeModal}){
+function JournalForm({movieTitle, movieId, userId, closeModal}){
     const [journalFormData, setJournalFormData] = useState({
         comment: "",
         movie_id: movieId,
         user_id: userId,
+        movie_title: movieTitle,
     });
 
     // Need to change

@@ -70,14 +70,23 @@ router.get('/movie/:movie_id', async (req, res, next) => {
                 api_key: API_KEY,
             }
         });
-        console.log(response.data);
-        return res.send(response.data)
+        const providerResponse = await axios.get(`${BASE_URL}/movie/${movie_id}/watch/providers?api_key=${API_KEY}`)
+        // console.log(response.data);
+        // console.log('provider response: ', providerResponse.data.results.US);
+        response.data.providers = providerResponse.data.results.US
+        console.log(response.data.providers.rent)
+        return res.send(response.data);
 
     } catch (err){
         console.log(err)
         return res.send(NotFoundError)
     }
-})
+});
+
+/** Get watch providers 
+ * 
+ * /movie/{movie_id}/watch/providers
+*/
 
 
 

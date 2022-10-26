@@ -85,12 +85,24 @@ router.post("/:user_id/journal", async function(req, res, next){
   } 
 });
 
-/** GET all Journal Entries */
+/** GET all Journal Entries and Movie Data*/
 
 router.get("/:user_id/journal-entries", async function(req, res, next){
   try{
     const {user_id} = req.params;
     const journalEntries = await User.getJournalEntryList(user_id);
+    const journalMovieIds = journalEntries.map(e => e.movie_id);
+    const unresolved = journalMovieIds.map(async(id) => {
+      return await axios.get(`${BASE_URL}/movie/${id}`, {
+        params: {
+          api_key: API_KEY,
+        }
+      })
+    })
+    const resolved = await Promise.all(unresolved);
+    const movieData = resolved.map(prom => {
+      return prom.data;
+    })
     return res.json({journalEntries});
   } catch (err){
     return next(err);
