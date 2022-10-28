@@ -24,13 +24,18 @@ function JournalList(){
         }, [currentUser.id]);
     } 
     if (!journalEntries) return <LoadingSpinner />;
-
+    
 
     console.log(journalEntries);
     return (
         <>
-        {journalEntries.map(e => {
-            return (<p>{e.comment}</p>)
+        {journalEntries.map(entry => {
+            const date = new Date(entry.created_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+            return (
+                <>
+                 <p>{date} - {entry.movie_title}: {entry.comment}</p>
+                </>
+            )
         })}
         </>
     )

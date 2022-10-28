@@ -200,7 +200,7 @@ class User {
         let result = await db.query(
             `INSERT INTO user_journal
              (user_id, movie_id, comment, movie_title)
-             VALUES ($1, $2, $3, $5)
+             VALUES ($1, $2, $3, $4)
              RETURNING *`,
              [
                 user_id,
@@ -221,7 +221,8 @@ class User {
                     user_id,
                     movie_id,
                     comment,
-                    created_at
+                    created_at,
+                    movie_title
             FROM user_journal
             WHERE user_id = $1`,
             [user_id],

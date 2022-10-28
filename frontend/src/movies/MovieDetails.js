@@ -19,11 +19,16 @@ function MovieDetail(){
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`;
 
+    let providerPath = `https://api.themoviedb.org/3/movie`;
+
+    const API_KEY = `9a114ae809d1fc32f0105fcd87afe983`;
+
+
 
     useEffect(function getMovieDetailsForUser(){
-        async function getMovie(){
-            setMovie(await MovieDatabaseApi.getMovie(id));
-        }
+      async function getMovie(){
+        setMovie(await MovieDatabaseApi.getMovie(id));
+      }
         getMovie();
     }, [id]);
 
@@ -84,9 +89,14 @@ function MovieDetail(){
                       <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
                     </Col>
 
-                    <Col>
+                    {/* <Col sm={3} md={6} xl={4}>
+                        <Card.Title className="movie-title">{movie.original_title}</Card.Title>
+                        <img  className="img-fluid" src={`${basePosterPath}$/${movie.results.US.link}/watch/providers?api_key=${API_KEY}`} />
+                    </Col>  */}
+
+                    {/* <Col>
                       <Button variant="outline-danger" startIcon={<DeleteIcon />}>Delete</Button>
-                    </Col>
+                    </Col> */}
 
                 </Row> 
             </Container>

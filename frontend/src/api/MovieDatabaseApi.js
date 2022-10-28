@@ -36,6 +36,7 @@ class MovieDatabaseApi {
     /** Get movie */
     static async getMovie(movie_id){
         let res = await this.request(`/moviedb/movie/${movie_id}`, {movie_id});
+        console.log(res);
         return res;
     }
 
