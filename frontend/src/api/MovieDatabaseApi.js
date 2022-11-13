@@ -25,6 +25,7 @@ class MovieDatabaseApi {
         try {
             return (await axios({url, method, data, params, headers})).data;
         } catch (err){
+            console.log(err);
             console.error("API Error: ", err.response);
             let message = err.response.data.error.message;
             throw Array.isArray(message) ? message : [message];
@@ -36,8 +37,8 @@ class MovieDatabaseApi {
     /** Get movie */
     static async getMovie(movie_id){
         let res = await this.request(`/moviedb/movie/${movie_id}`, {movie_id});
-        console.log(res);
-        return res;
+        console.log(res.data);
+        return res.data;
     }
 
     /** Get Popular Movies on Mount */

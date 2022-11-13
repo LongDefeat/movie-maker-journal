@@ -5,11 +5,14 @@ import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 import MovieCardList from "../movies/MovieCardList";
 
+
 /** Parent Function --> MovieCard */
 
 function FavoriteList(){
     const [favorites, setFavorites] = useState(null);
     const {currentUser} = useContext(UserContext);
+    const [favoriteDisplay, setFavoriteDisplay] = useState(false);
+
     if (!currentUser) return <LoadingSpinner />
    
     

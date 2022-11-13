@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
 import { FaPencilAlt } from "react-icons/fa";
 import "./MovieDetails.css";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 
 
@@ -32,12 +33,21 @@ function MovieDetail(){
         getMovie();
     }, [id]);
 
-    // if (!movie) return <LoadingSpinner />;
+    if (!movie) return <LoadingSpinner />;
 
+    const {release_date, original_title, overview, revenue, vote_average, runtime, poster_path} = movie.details;
 
-    console.log(movie);
-    // const date = new Date(movie.release_date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+    const year = new Date(release_date).toLocaleDateString("en-US", {
+      year: "numeric"
+    });
 
+    const date = new Date(release_date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+
+    console.log(movie.cast);
 
     function MyVerticallyCenteredModal(props) {
         return (
@@ -49,11 +59,11 @@ function MovieDetail(){
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                {movie.original_title} 
+                {original_title} 
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <JournalForm movieTitle={movie.original_title} movieId={movie.id} userId={currentUser.id} closeModal={props.onHide}/>
+              <JournalForm movieTitle={original_title} movieId={movie.details.id} userId={currentUser.id} closeModal={props.onHide}/>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>
@@ -66,27 +76,18 @@ function MovieDetail(){
         return (
             <>
             <Container className="movie-details-container py-5">
-                <Row>
-                    <Col sm={3} md={6} xl={4}>
-                        <Card.Title className="movie-title">{movie.original_title}</Card.Title>
-                        <img  className="img-fluid" src={`${basePosterPath}${movie.poster_path}`} />
+                <Row className="align-items-center">
+                    <Col md={4}>
+                        <img  className="img-fluid" src={`${basePosterPath}${poster_path}`} />
                     </Col> 
                     
-                    <Col sm={3} md={6} xl={4}>
-                        <p>Overview: {movie.overview}</p>
-                        <Row><p>Runtime: {movie.runtime} minutes</p></Row>
-                        <Row><p>Released: {movie.release_date}</p></Row>
-                        <Row><p>Rated {movie.certification}</p></Row>
-                    </Col>
-
-                    <Col sm={3} md={6} xl={4}>
-                        <Row><p>Worldwide Revenue: ${movie.revenue}</p></Row>
-                        <Row><p>Average User Rating: {movie.vote_average}/10</p></Row>
-                        <Row><p>Cast: {movie.cast}</p></Row>
-                    </Col>
-
-                    <Col>
-                      <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
+                    <Col md={8}>
+                        <h1 className="movie-title">{movie.original_title} ({year})</h1>
+                        <p><span style={{border: '1px solid white', padding:'5px', borderRadius:'10px'}}> PG-13</span> • {date} • {runtime} minutes</p>
+                        <p>Overview: {overview}</p>
+                        <p>Worldwide Revenue: ${revenue}</p>
+                        <p>Average User Rating: {vote_average}/10</p>
+                        <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
                     </Col>
 
                     {/* <Col sm={3} md={6} xl={4}>

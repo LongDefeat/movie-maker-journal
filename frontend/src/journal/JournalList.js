@@ -1,13 +1,16 @@
 import React, {useState, useEffect, useContext} from "react";
 import UserContext from "../auth/UserContext";
 import UserDatabaseApi from "../api/UserDatabaseApi";
-import MovieDatabaseApi from "../api/MovieDatabaseApi";
 import LoadingSpinner from "../common/LoadingSpinner";
+import Table from 'react-bootstrap/Table';
+import { Container, Button } from "react-bootstrap";
+import {AiFillDelete} from "react-icons/ai";
+import {MdEdit} from "react-icons/md";
+
 
 
 function JournalList(){
     const [journalEntries, setJournalEntries] = useState(null);
-    // const [movieData, setMovieData] = useState(null);
     const currentUser = useContext(UserContext);
     console.log("Journal List Page: ", currentUser);
 
@@ -25,19 +28,41 @@ function JournalList(){
     } 
     if (!journalEntries) return <LoadingSpinner />;
     
-
-    console.log(journalEntries);
+    async function handleDelete(id){
+        await UserDatabaseApi.deleteEntry(id);
+        console.log("handle delete works");
+    }
+   
     return (
-        <>
+        <Container className="py-5">
+            <Table bordered variant="dark"striped>
+                        <thead>
+                            <tr>
+                                <th>Entry Date</th>
+                                <th>Movie Title</th>
+                                <th>Comment</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
         {journalEntries.map(entry => {
             const date = new Date(entry.created_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
             return (
                 <>
-                 <p>{date} - {entry.movie_title}: {entry.comment}</p>
+                            <tr>
+                                <td style={{whiteSpace: 'nowrap'}}>{date}</td>
+                                <td style={{whiteSpace: 'nowrap'}}>{entry.movie_title}</td>
+                                <td>{entry.comment}</td>
+                                <td className="text-center"><Button><MdEdit /></Button></td>
+                                <td className="text-center"><Button variant="danger" onClick={() => handleDelete(entry.id)}><AiFillDelete /></Button></td>
+                            </tr>
                 </>
             )
         })}
-        </>
+                        </tbody>
+                </Table>
+        </Container>
     )
 }
 

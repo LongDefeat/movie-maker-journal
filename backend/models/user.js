@@ -230,10 +230,12 @@ class User {
         const journalEntries = result.rows;
         return journalEntries;
     }
+
+
   /** Update profile for a given user */
   static async updateProfile(user_id){
     let result = await db.query(
-        `INSERT INTO public.user,
+        `INSERT INTO public.user
                 (username, password)
                 VALUES($1, $2)
         RETURNING *`,
@@ -243,13 +245,15 @@ class User {
 
   /** Add favorite movie to table */
   static async addFavoriteMovie(user_id, movie_id){
+    
     let result = await db.query(
-        `INSERT INTO user_favorite_movies,
+        `INSERT INTO user_favorite_movies
                 (user_id, movie_id)
                 VALUES($1, $2)
         RETURNING *`,
         [user_id, movie_id]
-    )
+    );
+    return result.rows;
   }
 
   /** Get all favorite movie_ids */
@@ -268,6 +272,21 @@ class User {
    * 
    * 
    */
+
+
+   /** Delete Journal entry */
+   static async deleteJournalEntry(id){
+    let result = await db.query(
+        `DELETE FROM user_journal
+         where id = $1
+         RETURNING id`,
+         [id]
+    );
+    const entry = result.rows[0];
+    return entry;
+
+    if(!entry) throw new NotFoundError(`No journal entry ${id} found...`);
+  }
 }
 
 module.exports = User;

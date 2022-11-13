@@ -65,17 +65,19 @@ router.get('/movie/:movie_id', async (req, res, next) => {
     console.log(movie_id);
 
     try {
-        const response = await axios.get(`${BASE_URL}/movie/${movie_id}`, {
+        const detailsResponse = await axios.get(`${BASE_URL}/movie/${movie_id}`, {
             params: {
                 api_key: API_KEY,
             }
         });
-        const providerResponse = await axios.get(`${BASE_URL}/movie/${movie_id}/watch/providers?api_key=${API_KEY}`)
-        // console.log(response.data);
-        // console.log('provider response: ', providerResponse.data.results.US);
-        response.data.providers = providerResponse.data.results.US
-        console.log(response.data.providers.rent)
-        return res.send(response.data);
+        const providerResponse = await axios.get(`${BASE_URL}/movie/${movie_id}/watch/providers?api_key=${API_KEY}`);
+        const castResponse = await axios.get(`${BASE_URL}/movie/${movie_id}/credits?api_key=${API_KEY}`);
+        const data = {};
+        data.details = detailsResponse.data;
+        data.cast = castResponse.data.cast;
+        data.providers = providerResponse.data.results.US;
+        console.log(data);
+        return res.json({data});
 
     } catch (err){
         console.log(err)

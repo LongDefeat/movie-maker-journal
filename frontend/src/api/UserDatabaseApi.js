@@ -57,12 +57,11 @@ class UserDatabaseApi {
 
 // ===================JOURNAL ENTRY ROUTES======================
 
-    /** Get all journal entries */
+    /** Get all Journal entries */
     static async getEntries(user_id){
         let res = await this.request(`/users/${user_id}/journal-entries`);
         return res.journalEntries;
     }
-
 
     /** Create Journal entry */
     static async journalMovieReview(user_id, data){
@@ -70,11 +69,20 @@ class UserDatabaseApi {
         return res.journalEntry;
     }
 
+    /** Delete Journal entry */
+    static async deleteEntry(entry_id, data){
+        console.log(entry_id);
+        let res = await this.request(`/journals/${entry_id}`, data, "delete");
+        return res.journalEntry;
+    }
+
 // ===================FAVORITES ROUTES======================
 
     /** Add favorite movie */
     static async addFavorite(user_id, movie_id){
-        let res = await this.request(`/users/${user_id}/favorites`, movie_id, "post");
+        console.log("addFavorite called", movie_id);
+        let res = await this.request(`/users/${user_id}/favorites/${movie_id}`, movie_id, "post");
+        console.log("addFavorite Route: ", user_id, movie_id);
         return res.favorites;
     }
 

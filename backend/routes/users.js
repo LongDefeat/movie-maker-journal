@@ -60,13 +60,14 @@ router.get("/:username", async function(req, res, next){
   }
 });
 
-/** POST / => { user: [ {user_id, movie_id} ] } 
+/** POST Favorite Movie to backend => { user: [ {user_id, movie_id} ] } 
  * 
 */
-router.post("/:user_id/favorites", async function (req, res, next){
-  console.log(req.params, req.body);
+router.post("/:user_id/favorites/:movie_id", async function (req, res, next){
   try{
-    const favorites = await User.addFavorite(req.params.user_id, req.body)
+    console.log("backend: ", req.params.movie_id)
+    const favorites = await User.addFavoriteMovie(req.params.user_id, req.params.movie_id);
+    return res.status(201).json({favorites});
   } catch (err){
     return next(err)
   }
@@ -76,7 +77,6 @@ router.post("/:user_id/favorites", async function (req, res, next){
 /** POST Journal Entry/  */
 
 router.post("/:user_id/journal", async function(req, res, next){
-  console.log(req.params);
   try{
     const journalEntry = await User.addJournalEntry(req.body, req.params.user_id);
     return res.status(201).json({journalEntry});
@@ -108,6 +108,8 @@ router.get("/:user_id/journal-entries", async function(req, res, next){
     return next(err);
   }
 })
+
+
 
 /** GET all favorite movies */
 
@@ -164,7 +166,7 @@ router.patch("/:username", async function (req, res, next) {
  * Authorization required: admin or same-user-as-:username
  **/
 
-router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.delete("/:username", async function (req, res, next) {
     try {
       await User.remove(req.params.username);
       return res.json({ deleted: req.params.username });
@@ -173,22 +175,6 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
     }
 });
 
-/** POST /[username]/jobs/[id]  { state } => { application }
- *
- * Returns {"applied": jobId}
- *
- * Authorization required: admin or same-user-as-:username
- * */
-
-router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
-    try {
-      const jobId = +req.params.id;
-      await User.applyToJob(req.params.username, jobId);
-      return res.json({ applied: jobId });
-    } catch (err) {
-      return next(err);
-    }
-});
 
 
 module.exports = router;

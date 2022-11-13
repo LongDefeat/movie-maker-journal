@@ -5,7 +5,8 @@ import UserContext from "../auth/UserContext";
 import Alert from "react-bootstrap/Alert";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
-import "./ProfileForm.css"
+import {AiFillDelete} from "react-icons/ai";
+import "./ProfileForm.css";
 
 function ProfileForm(){
     const currentUser = useContext(UserContext);
@@ -47,6 +48,11 @@ function ProfileForm(){
         setFormErrors([]);
     }
     console.log(updateProfileFormData)
+
+    /** Delete user */
+    function handleDelete(){
+        alert('Are you sure you want to delete this user?')
+    }
     if (!currentUser) return <LoadingSpinner />;
 
     return (
@@ -79,17 +85,24 @@ function ProfileForm(){
                                         onChange={handleChange} 
                             />
                         </Form.Group>
+                        <Row className="justify-content-between">
+                            <Col className="col-auto">
+                                <Button variant="outline-success" type="submit" onClick={handleSubmit}>
+                                    Submit</Button>
+                            </Col>
 
-                        <Button variant="outline-success" type="submit" onClick={handleSubmit}>
-                            Submit
-                        </Button>
+                            <Col className="col-auto">
+                                <Button variant="outline-danger" onClick={handleDelete}><AiFillDelete />Delete User</Button>
+                            </Col>
+                            
+                        </Row>
+                        
                     </Form>
                 {saveConfirmed ? (<Alert variant="success">Successfully updated profile!</Alert>)
                 :
                 null}
                 </Col>
             </Row>
-
         </div>
     )
 }

@@ -7,11 +7,10 @@
     display: flex;
     flex-direction: row;
 } */
-/* .movie-title{
-    font-size: 2.6rem;
-    color: rgba(33, 32, 32, 0.961);
-    font-weight: bold;
-} */
+
+.movie-title{
+    font-style: 'Source Sans Pro', 'Arial';
+}
 
 /* .poster{
     border: black 3px;

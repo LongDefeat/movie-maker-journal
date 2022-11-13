@@ -4,6 +4,7 @@
 
 .navbar-brand{
     color: black !important;
+    font-weight: bold;
 }
 
 .nav-link{
