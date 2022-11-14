@@ -12,9 +12,7 @@ import {MdEdit} from "react-icons/md";
 function JournalList(){
     const [journalEntries, setJournalEntries] = useState(null);
     const currentUser = useContext(UserContext);
-    console.log("Journal List Page: ", currentUser);
-
-
+    
     if(currentUser) {
         useEffect(function getJournalEntries(){
             async function fetchJournalEntries(){

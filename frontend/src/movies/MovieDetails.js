@@ -6,6 +6,7 @@ import JournalForm from "../journal/JournalForm";
 import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
 import { FaPencilAlt } from "react-icons/fa";
+import ActorCard from "../actors/ActorCard";
 import "./MovieDetails.css";
 import LoadingSpinner from "../common/LoadingSpinner";
 
@@ -47,7 +48,9 @@ function MovieDetail(){
       day: "numeric",
     });
 
-    console.log(movie.cast);
+    const castMembers = movie.cast;
+    console.log(castMembers);
+
 
     function MyVerticallyCenteredModal(props) {
         return (
@@ -82,7 +85,7 @@ function MovieDetail(){
                     </Col> 
                     
                     <Col md={8}>
-                        <h1 className="movie-title">{movie.original_title} ({year})</h1>
+                        <h1 className="movie-title">{original_title} ({year})</h1>
                         <p><span style={{border: '1px solid white', padding:'5px', borderRadius:'10px'}}> PG-13</span> • {date} • {runtime} minutes</p>
                         <p>Overview: {overview}</p>
                         <p>Worldwide Revenue: ${revenue}</p>
@@ -99,6 +102,20 @@ function MovieDetail(){
                       <Button variant="outline-danger" startIcon={<DeleteIcon />}>Delete</Button>
                     </Col> */}
 
+                </Row>
+                <Row>
+                    {castMembers.map(m =>{
+                      return(
+                        <>
+                          <Col>
+                            <ActorCard name={m.name}
+                                       character={m.character}
+                                       picture={m.profile_path}
+                            />
+                          </Col>
+                        </>
+                      )
+                    })}
                 </Row> 
             </Container>
         
@@ -109,7 +126,20 @@ function MovieDetail(){
             </>
         )
     }
-
+     /**{journalEntries.map(entry => {
+            const date = new Date(entry.created_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+            return (
+                <>
+                            <tr>
+                                <td style={{whiteSpace: 'nowrap'}}>{date}</td>
+                                <td style={{whiteSpace: 'nowrap'}}>{entry.movie_title}</td>
+                                <td>{entry.comment}</td>
+                                <td className="text-center"><Button><MdEdit /></Button></td>
+                                <td className="text-center"><Button variant="danger" onClick={() => handleDelete(entry.id)}><AiFillDelete /></Button></td>
+                            </tr>
+                </>
+            )
+        })} */
     return (
         <>
             {movie && 
