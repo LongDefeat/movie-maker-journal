@@ -4,7 +4,6 @@ import RoutesFunc from "./routes-nav/Routes";
 import MovieDatabaseApi from "./api/MovieDatabaseApi";
 import UserDatabaseApi from "./api/UserDatabaseApi";
 import UserContext from "./auth/UserContext";
-// import jwt from "jsonwebtoken";
 import { decodeToken } from "react-jwt";
 import Navigation from "./routes-nav/Navigation";
 import useLocalStorage from "./hooks/useLocalStorage";

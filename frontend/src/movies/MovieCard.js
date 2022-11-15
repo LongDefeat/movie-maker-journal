@@ -34,52 +34,53 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
     day: "numeric",
   });
 
+  const rating = Math.floor((voteAverage / 10) * 100);
+
   return (
     <>
       <div>
-        <Card className="cards text-dark">
+        <Card className="text-dark mb-3">
+          <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
             <Card.Text>
-              <div className="MovieCard-text">{overview}</div>
-              <div>Average User Rating: {voteAverage}</div>
-              <div>Released: {date}</div>
+              {/* <div className="MovieCard-text">{overview}</div> */}
+              <div>Avg Rating: {rating}%</div>
+              <div>{date}</div>
             </Card.Text>
-            <Row>
-                <Col className="px-0">
+                <Row>
+                  <Col className="col-auto">
                         <Button
                         variant="primary"
                         size="sm"
                         className="font-weight-bold text-uppercase">
-                        <HiEye /> Seen
+                        <HiEye /> 
                         </Button>
-                </Col>
-               <Col className="px-0">
+                  </Col>
+                  <Col className="col-auto">
                     <Link to={`/movies/${id}`}>
                         <Button
                         size="sm"
                         variant="info"
                         className="font-weight-bold text-uppercase"
                         >
-                        <GiMagnifyingGlass /> Details
+                        <GiMagnifyingGlass /> 
                         </Button>
                     </Link>
-               </Col>
-             
-             <Col className="px-0">
-                <Button
-                    size="sm"
-                    onClick={() => addFavoriteMovie(currentUser.currentUser.id, id)}
-                    variant="warning"
-                    className="font-weight-bold text-uppercase"
-                >
-                    <GiPopcorn size={20} />
-                    Like
-                </Button>
-             </Col>
+                  </Col>
+
+                  <Col className="col-auto">        
+                    <Button
+                        size="sm"
+                        onClick={() => addFavoriteMovie(currentUser.currentUser.id, id)}
+                        variant="warning"
+                        className="font-weight-bold text-uppercase">
+                        <GiPopcorn size={20} />   
+                    </Button>
+                  </Col>
+                </Row>
               
-            </Row>
+          
           </Card.Body>
         </Card>
       </div>

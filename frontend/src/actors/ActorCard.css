@@ -1,20 +1,10 @@
-.container-card{
-    display: flex;
-    flex-direction: row;
-    border: goldenrod;
-    overflow-x: scroll;
-    background: #2b2b2b;
-    margin-top: 10px;
+.card-body h5, 
+.card-body h6{
+    min-height: 48px;
 }
 
-.actor-image{
-    display: flex;
-    justify-content: center;
-    background: #ddd;
-    grid-gap: 5px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: minmax(50px, auto);
-    width: 115px;
-    height: 150px;
+img.card-img-top{
+    height: 100vh;
+    max-height: 300px;
+    object-fit: cover;
 }
-

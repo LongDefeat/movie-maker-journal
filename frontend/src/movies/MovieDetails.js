@@ -42,6 +42,8 @@ function MovieDetail(){
       year: "numeric"
     });
 
+    const rating = Math.floor((vote_average / 10) * 100);
+
     const date = new Date(release_date).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
@@ -89,25 +91,15 @@ function MovieDetail(){
                         <p><span style={{border: '1px solid white', padding:'5px', borderRadius:'10px'}}> PG-13</span> • {date} • {runtime} minutes</p>
                         <p>Overview: {overview}</p>
                         <p>Worldwide Revenue: ${revenue}</p>
-                        <p>Average User Rating: {vote_average}/10</p>
+                        <p>Average User Rating: {rating}%</p>
                         <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
                     </Col>
-
-                    {/* <Col sm={3} md={6} xl={4}>
-                        <Card.Title className="movie-title">{movie.original_title}</Card.Title>
-                        <img  className="img-fluid" src={`${basePosterPath}$/${movie.results.US.link}/watch/providers?api_key=${API_KEY}`} />
-                    </Col>  */}
-
-                    {/* <Col>
-                      <Button variant="outline-danger" startIcon={<DeleteIcon />}>Delete</Button>
-                    </Col> */}
-
                 </Row>
-                <Row>
+                <Row style={{flexWrap: "nowrap", overflowX: "scroll"}} className="mt-5">
                     {castMembers.map(m =>{
                       return(
                         <>
-                          <Col>
+                          <Col md={2}>
                             <ActorCard name={m.name}
                                        character={m.character}
                                        picture={m.profile_path}

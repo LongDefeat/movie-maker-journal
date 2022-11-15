@@ -1,21 +1,6 @@
-/* .movie-details-container{
-    background-color: rgb(232, 232, 132);
-    border: 10px rgb(49, 60, 64);
-    margin-left: 10px;
-    margin-right: 10px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-} */
-
 .movie-title{
     font-style: 'Source Sans Pro', 'Arial';
+    align-items: flex-start;
 }
 
-/* .poster{
-    border: black 3px;
-    width: 150px;
-    height: 300px;
-    margin-bottom: 5px;
-} */
 

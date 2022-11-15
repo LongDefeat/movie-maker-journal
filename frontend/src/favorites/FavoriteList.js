@@ -26,7 +26,6 @@ function FavoriteList(){
 
 
     if (!favorites) return <LoadingSpinner />
-    console.log(favorites);
 
     return (
         <Container className="py-5 text-center">

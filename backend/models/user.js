@@ -22,7 +22,7 @@ const { strictEqual } = require("assert");
 class User {
 
     static async authenticate(username, password){
-        // attempt search for user first
+        // attempt search for user first; try adding leftJoin after public.user here to the favorites table to collect favorites
         const result = await db.query(
             `SELECT username,
                     password,
