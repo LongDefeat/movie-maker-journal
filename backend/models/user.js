@@ -230,7 +230,32 @@ class User {
         const journalEntries = result.rows;
         return journalEntries;
     }
-
+  
+  /** Add seen movie to user */
+    static async addSeenMovie(user_id, movie_id){
+      console.log(movie_id, user_id);
+      let result = await db.query(
+        `INSERT INTO user_watched_movies
+                (user_id, movie_id)
+                VALUES($1, $2)
+          RETURNING *`,
+          [user_id, movie_id]
+      );
+      return result.rows;
+    }
+  
+  /** Get all seen movies  */
+  static async getSeenMovies(user_id){
+    let result = await db.query(
+        `SELECT movie_id
+        FROM user_watched_movies
+        WHERE user_id = $1`,
+        [user_id],
+    );
+    const seenMovieList = result.rows;
+    console.log(seenMovieList);
+    return seenMovieList;
+  }
 
   /** Update profile for a given user */
   static async updateProfile(user_id){
@@ -245,8 +270,7 @@ class User {
 
   /** Add favorite movie to table */
   static async addFavoriteMovie(user_id, movie_id){
-    
-    let result = await db.query(
+      let result = await db.query(
         `INSERT INTO user_favorite_movies
                 (user_id, movie_id)
                 VALUES($1, $2)

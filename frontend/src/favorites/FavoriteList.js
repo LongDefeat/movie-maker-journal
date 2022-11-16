@@ -5,7 +5,6 @@ import UserContext from "../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 import MovieCardList from "../movies/MovieCardList";
 
-
 /** Parent Function --> MovieCard */
 
 function FavoriteList(){
@@ -23,7 +22,6 @@ function FavoriteList(){
             };
             getFavorites(currentUser.id);
     }, [currentUser.id]);
-
 
     if (!favorites) return <LoadingSpinner />
 

@@ -82,7 +82,6 @@ class UserDatabaseApi {
     static async addFavorite(user_id, movie_id){
         console.log("addFavorite called", movie_id);
         let res = await this.request(`/users/${user_id}/favorites/${movie_id}`, movie_id, "post");
-        console.log("addFavorite Route: ", user_id, movie_id);
         return res.favorites;
     }
 
@@ -90,6 +89,21 @@ class UserDatabaseApi {
     static async getFavorites(user_id){
         let res = await this.request(`/users/${user_id}/favorites`);
         return res.favorites;
+    }
+
+// ===================SEEN MOVIE ROUTES======================
+    /** Add seen movie */
+    static async addSeen(user_id, movie_id){
+        console.log("addSeen called", movie_id);
+        let res = await this.request(`/users/${user_id}/seen/${movie_id}`, movie_id, "post");
+        return res.seen;
+    }
+
+    /** Get seen movies list */
+    static async getSeenMovies(user_id){
+        console.log("getSeenMovies in UserDatabaseAPI running:",user_id)
+        let res = await this.request(`/users/${user_id}/seen`)
+        return res.seen;
     }
 
 // ===================RATING ROUTES======================

@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import MovieDetail from "../movies/MovieDetails";
 import JournalList from "../journal/JournalList";
 import FavoriteList from "../favorites/FavoriteList";
+import SeenMovieList from "../seen/SeenMovieList";
 
 /** Site-wide routes.
  * 
@@ -37,6 +38,9 @@ function RoutesFunc({login, signup}){
                     <Route path="/journal-list" element={<JournalList />} />
 
                     <Route path="/favorites" element={<FavoriteList />} />
+
+                    <Route path="/seen" element={<SeenMovieList />} />
+
                     
                     {/* <PrivateRoute path=""/> */}
                 </Routes>

@@ -28,6 +28,10 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
     await UserDatabaseApi.addFavorite(user_id, movie_id);
   }
 
+  async function addSeenMovie(user_id, movie_id){
+    await UserDatabaseApi.addSeen(user_id, movie_id);
+  }
+
   const date = new Date(releaseDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -52,6 +56,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
                   <Col className="col-auto">
                         <Button
                         variant="primary"
+                        onClick={() => addSeenMovie(currentUser.currentUser.id, id)}
                         size="sm"
                         className="font-weight-bold text-uppercase">
                         <HiEye /> 

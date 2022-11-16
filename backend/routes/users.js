@@ -73,6 +73,43 @@ router.post("/:user_id/favorites/:movie_id", async function (req, res, next){
   }
 })
 
+/** POST Seen Movie to backend => { user: [user_id, movie_id ] } 
+ * 
+*/
+router.post("/:user_id/seen/:movie_id", async function (req, res, next){
+  try {
+    const seenMovies = await User.addSeenMovie(req.params.user_id, req.params.movie_id);
+    return res.status(201).json({seenMovies});
+  } catch(err){
+    return next(err);
+  }
+})
+
+/** GET all seen movies history 
+ * 
+*/
+router.get("/:user_id/seen", async function(req, res, next){
+  try{
+    const {user_id} = req.params;
+    const seenMovies = await User.getSeenMovies(user_id);
+    const seenMovieIds = seenMovies.map(m => m.movie_id);
+    const unresolved = seenMovieIds.map(async(id) => {
+      return await axios.get(`${BASE_URL}/movie/${id}`, {
+        params: {
+          api_key: API_KEY,
+        }
+      });
+    })
+    const resolved = await Promise.all(unresolved);
+    const seen = resolved.map(prom => {
+      return prom.data;
+    });
+    return res.json({seen});
+  } catch(err){
+    return next(err)
+  }
+})
+
 
 /** POST Journal Entry/  */
 

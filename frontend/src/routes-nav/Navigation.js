@@ -16,6 +16,7 @@ function Navigation({ logout }) {
       <>
               <Nav.Link as={NavLink} to="/journal-list">Journal</Nav.Link>
               <Nav.Link as={NavLink} to="/favorites">Favorites</Nav.Link>
+              <Nav.Link as={NavLink} to="/seen">Movie History</Nav.Link>
               <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
               <Nav.Link as={NavLink} className="logout" to="/" onClick={logout}>
                 Logout
