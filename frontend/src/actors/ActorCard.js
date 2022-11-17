@@ -2,17 +2,16 @@ import React, { useContext, useEffect } from "react";
 import Card from "react-bootstrap/card";
 import "./ActorCard.css";
 
-
 const unavailableImage = require('./unavailable.jpeg');
 
-
+/** Display actors in a given film */
 
 
 function ActorCard({name, character, picture}){
 
     let basePosterPath = `https://image.tmdb.org/t/p/w500`;
     let fullImagePath = `${basePosterPath}${picture}`;
-    let image = 
+    
 
     console.log(picture)
 

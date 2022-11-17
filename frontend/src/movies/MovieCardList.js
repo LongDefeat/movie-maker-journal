@@ -9,13 +9,12 @@ import Col from "react-bootstrap/Col";
  */
 
 function MovieCardList ({movies}){
-    console.log("MovieCardList", "movies=", movies);
 
     return (
         <div>
             <Row>
                {movies.length ?  movies.map(movie => (
-                
+                    
                     <Col xs={12} md={6} lg={2} key={movie.id}>
                         <MovieCard
                             key={movie.id}

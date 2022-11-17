@@ -10,6 +10,9 @@ import { GiMagnifyingGlass } from "react-icons/gi";
 import "./MovieCard.css";
 import UserDatabaseApi from "../api/UserDatabaseApi";
 
+// const unavailableImage = require('./actors/unavailable.jpeg');
+
+
 /** Show limited info about a movie
  *
  * Is rendered by MovieCardList to display a "card" for each movie.
@@ -19,10 +22,19 @@ import UserDatabaseApi from "../api/UserDatabaseApi";
  * MovieCardList --> MovieCard
  */
 
+const unavailableImage = require('./unavailablePoster.jpeg');
+
+
 function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
   const currentUser = useContext(UserContext);
 
   let basePosterPath = `https://image.tmdb.org/t/p/w500`;
+  let fullImagePath = `${basePosterPath}${poster}`;
+
+  if(!poster){
+    fullImagePath = unavailableImage;
+  }
+
 
   async function addFavoriteMovie(user_id, movie_id) {
     await UserDatabaseApi.addFavorite(user_id, movie_id);
@@ -44,11 +56,10 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
     <>
       <div>
         <Card className="text-dark mb-3">
-          <Card.Img variant="top" src={`${basePosterPath}${poster}`} />
+          <Card.Img variant="top" src={`${fullImagePath}`} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>
-              {/* <div className="MovieCard-text">{overview}</div> */}
               <div>Avg Rating: {rating}%</div>
               <div>{date}</div>
             </Card.Text>
