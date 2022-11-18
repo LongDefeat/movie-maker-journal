@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import Card from "react-bootstrap/card";
+import Card from "react-bootstrap/Card";
 import "./ActorCard.css";
 
 const unavailableImage = require('./unavailable.jpeg');

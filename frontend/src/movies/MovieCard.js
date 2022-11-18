@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import UserContext from "../auth/UserContext";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/card";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
 import { GiPopcorn } from "react-icons/gi";
@@ -9,8 +9,6 @@ import { HiEye } from "react-icons/hi";
 import { GiMagnifyingGlass } from "react-icons/gi";
 import "./MovieCard.css";
 import UserDatabaseApi from "../api/UserDatabaseApi";
-
-// const unavailableImage = require('./actors/unavailable.jpeg');
 
 
 /** Show limited info about a movie
