@@ -16,7 +16,8 @@
     "pg": "^8.8.0"
   },
   "scripts": {
-    "dev": "nodemon server.js"
+    "server": "NODE_ENV=production node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
