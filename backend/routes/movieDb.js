@@ -12,7 +12,6 @@ const API_KEY = `9a114ae809d1fc32f0105fcd87afe983`;
 router.get('/search', async (req, res, next) => {
     
     const {searchText} = req.query;
-    console.log(searchText);
     try{
         const response = await axios.get(`${BASE_URL}/search/movie`, {
             params:{
@@ -20,7 +19,6 @@ router.get('/search', async (req, res, next) => {
                 query: searchText,    
             }
         });
-        console.log(response.data);
         return res.send(response.data);
     } catch (err){
         console.log(err);
@@ -38,7 +36,6 @@ router.get('/popular', async (req, res, next) => {
                 api_key: API_KEY   
             }
         });
-        console.log(response.data);
         return res.send(response.data);
     } catch(err){
         res.send(NotFoundError)

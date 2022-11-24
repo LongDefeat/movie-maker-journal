@@ -13,6 +13,7 @@ const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
 const movieDbRoutes = require("./routes/movieDb");
 const journalRoutes = require("./routes/journals");
+const movieRoutes = require("./routes/userMovies");
 
 const morgan = require("morgan");
 
@@ -29,6 +30,7 @@ app.use('/moviedb', movieDbRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/journals", journalRoutes);
+app.use("/movies", movieRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

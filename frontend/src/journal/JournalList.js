@@ -28,18 +28,18 @@ function JournalList(){
     
     async function handleDelete(id){
         await UserDatabaseApi.deleteEntry(id);
-        console.log("handle delete works");
+        window.location.reload();
     }
    
     return (
         <Container className="py-5">
             <Table bordered variant="dark"striped>
                         <thead>
-                            <tr>
+                            <tr className="text-center">
                                 <th>Entry Date</th>
                                 <th>Movie Title</th>
                                 <th>Comment</th>
-                                <th>Edit</th>
+                                {/* <th>Edit</th> */}
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@ function JournalList(){
                                 <td style={{whiteSpace: 'nowrap'}}>{date}</td>
                                 <td style={{whiteSpace: 'nowrap'}}>{entry.movie_title}</td>
                                 <td>{entry.comment}</td>
-                                <td className="text-center"><Button><MdEdit /></Button></td>
+                                {/* <td className="text-center"><Button><MdEdit /></Button></td> */}
                                 <td className="text-center"><Button variant="danger" onClick={() => handleDelete(entry.id)}><AiFillDelete /></Button></td>
                             </tr>
                 </>

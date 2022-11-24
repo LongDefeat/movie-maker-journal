@@ -10,7 +10,6 @@ const {
   } = require("../expressError");
   
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
-const { strictEqual } = require("assert");
 
 /** Related functions for users.
  * 
@@ -151,36 +150,10 @@ class User {
 
         const user = result.rows[0];
 
-        return user;
-
-        // const { setCols, values } = sqlForPartialUpdate(
-        //     data, 
-        //     {
-        //         firstName: "first_name",
-        //         lastName: "last_name",
-        //         // isAdmin: "is_admin",
-        //     }
-        // );
-        // const usernameVarIdx = "$" + (values.length + 1);
-
-        // const querySql = `UPDATE user
-        //                   SET ${setCols}
-        //                   WHERE username = ${usernameVarIdx}
-        //                   RETURNING username, 
-        //                             first_name AS "firstName",
-        //                             last_name AS "lastName",
-        //                             is_admin AS "isAdmin"`;
-        // const result = await db.query(querySql, [...values, username]);
-        // const user = result.rows[0];
-
-        // if (!user) throw new NotFoundError(`No user: ${username}`);
-
-        // delete user.password;
-        // return user;
+        return user;  
     }   
 
     /** Delete given user from database; returns undefined. */
-
     static async remove(username) {
         let result = await db.query(
            `DELETE
@@ -194,123 +167,6 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
-  /** Add journal entry  */
-    static async addJournalEntry(body, user_id) {
-        console.log(body, user_id);
-        let result = await db.query(
-            `INSERT INTO user_journal
-             (user_id, movie_id, comment, movie_title)
-             VALUES ($1, $2, $3, $4)
-             RETURNING *`,
-             [
-                user_id,
-                body.movie_id,
-                body.comment,
-                body.movie_title
-             ],
-        )
-        const journalEntry = result.rows[0];
-        
-        return journalEntry;
-    }
-
-  /** Get all journal entries for a given user*/
-    static async getJournalEntryList(user_id){
-        let result = await db.query(
-            `SELECT id,
-                    user_id,
-                    movie_id,
-                    comment,
-                    created_at,
-                    movie_title
-            FROM user_journal
-            WHERE user_id = $1`,
-            [user_id],
-        )
-        const journalEntries = result.rows;
-        return journalEntries;
-    }
-  
-  /** Add seen movie to user */
-    static async addSeenMovie(user_id, movie_id){
-      console.log(movie_id, user_id);
-      let result = await db.query(
-        `INSERT INTO user_watched_movies
-                (user_id, movie_id)
-                VALUES($1, $2)
-          RETURNING *`,
-          [user_id, movie_id]
-      );
-      return result.rows;
-    }
-  
-  /** Get all seen movies  */
-  static async getSeenMovies(user_id){
-    let result = await db.query(
-        `SELECT movie_id
-        FROM user_watched_movies
-        WHERE user_id = $1`,
-        [user_id],
-    );
-    const seenMovieList = result.rows;
-    console.log(seenMovieList);
-    return seenMovieList;
-  }
-
-  /** Update profile for a given user */
-  static async updateProfile(user_id){
-    let result = await db.query(
-        `INSERT INTO public.user
-                (username, password)
-                VALUES($1, $2)
-        RETURNING *`,
-        [username, password]
-    )
-  }
-
-  /** Add favorite movie to table */
-  static async addFavoriteMovie(user_id, movie_id){
-      let result = await db.query(
-        `INSERT INTO user_favorite_movies
-                (user_id, movie_id)
-                VALUES($1, $2)
-        RETURNING *`,
-        [user_id, movie_id]
-    );
-    return result.rows;
-  }
-
-  /** Get all favorite movie_ids */
-  static async getMovieIds(user_id){
-    let result = await db.query(
-        `SELECT movie_id
-        FROM user_favorite_movies
-        WHERE user_id = $1`,
-        [user_id],
-    );
-    const favoriteMoviesList = result.rows;
-    console.log(favoriteMoviesList);
-    return favoriteMoviesList;
-  }
-  /** NEED A WATCHED MOVIE METHOD FOR USERS
-   * 
-   * 
-   */
-
-
-   /** Delete Journal entry */
-   static async deleteJournalEntry(id){
-    let result = await db.query(
-        `DELETE FROM user_journal
-         where id = $1
-         RETURNING id`,
-         [id]
-    );
-    const entry = result.rows[0];
-    return entry;
-
-    if(!entry) throw new NotFoundError(`No journal entry ${id} found...`);
-  }
 }
 
 module.exports = User;

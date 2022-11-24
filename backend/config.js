@@ -15,7 +15,6 @@ function getDatabaseUri() {
       ? "mmj_test"
       : process.env.DATABASE_URL || "mmj";
 }
-
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
 //
 // WJB: Evaluate in 2021 if this should be increased to 13 for non-test use

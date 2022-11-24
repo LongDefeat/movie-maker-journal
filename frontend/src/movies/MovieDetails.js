@@ -118,20 +118,6 @@ function MovieDetail(){
             </>
         )
     }
-     /**{journalEntries.map(entry => {
-            const date = new Date(entry.created_at).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
-            return (
-                <>
-                            <tr>
-                                <td style={{whiteSpace: 'nowrap'}}>{date}</td>
-                                <td style={{whiteSpace: 'nowrap'}}>{entry.movie_title}</td>
-                                <td>{entry.comment}</td>
-                                <td className="text-center"><Button><MdEdit /></Button></td>
-                                <td className="text-center"><Button variant="danger" onClick={() => handleDelete(entry.id)}><AiFillDelete /></Button></td>
-                            </tr>
-                </>
-            )
-        })} */
     return (
         <>
             {movie && 

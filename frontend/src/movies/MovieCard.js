@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import UserContext from "../auth/UserContext";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -34,11 +36,11 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
   }
 
 
-  async function addFavoriteMovie(user_id, movie_id) {
+  async function addFavorite(user_id, movie_id) {
     await UserDatabaseApi.addFavorite(user_id, movie_id);
   }
 
-  async function addSeenMovie(user_id, movie_id){
+  async function addSeen(user_id, movie_id){
     await UserDatabaseApi.addSeen(user_id, movie_id);
   }
 
@@ -49,6 +51,24 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
   });
 
   const rating = Math.floor((voteAverage / 10) * 100);
+
+  const renderSeen = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Seen
+    </Tooltip>
+  );
+
+  const renderDetails = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Details
+    </Tooltip>
+  );
+
+  const renderLike = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Like
+    </Tooltip>
+  );
 
   return (
     <>
@@ -63,16 +83,25 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
             </Card.Text>
                 <Row>
                   <Col className="col-auto">
+                    <OverlayTrigger
+                      placement="bottom"
+                      delay={{ show: 250, hide: 400 }}
+                      overlay={renderSeen}>
                         <Button
                         variant="primary"
-                        onClick={() => addSeenMovie(currentUser.currentUser.id, id)}
+                        onClick={() => addSeen(currentUser.currentUser.id, id)}
                         size="sm"
                         className="font-weight-bold text-uppercase">
                         <HiEye /> 
                         </Button>
+                    </OverlayTrigger>
                   </Col>
                   <Col className="col-auto">
                     <Link to={`/movies/${id}`}>
+                    <OverlayTrigger
+                      placement="bottom"
+                      delay={{ show: 250, hide: 400 }}
+                      overlay={renderDetails}>
                         <Button
                         size="sm"
                         variant="info"
@@ -80,17 +109,23 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
                         >
                         <GiMagnifyingGlass /> 
                         </Button>
+                    </OverlayTrigger>
                     </Link>
                   </Col>
 
-                  <Col className="col-auto">        
-                    <Button
-                        size="sm"
-                        onClick={() => addFavoriteMovie(currentUser.currentUser.id, id)}
-                        variant="warning"
-                        className="font-weight-bold text-uppercase">
-                        <GiPopcorn size={20} />   
-                    </Button>
+                  <Col className="col-auto">
+                    <OverlayTrigger
+                        placement="bottom"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderLike}>
+                      <Button
+                          size="sm"
+                          onClick={() => addFavorite(currentUser.currentUser.id, id)}
+                          variant="warning"
+                          className="font-weight-bold text-uppercase">
+                          <GiPopcorn size={20} />   
+                      </Button>
+                    </OverlayTrigger>
                   </Col>
                 </Row>
               

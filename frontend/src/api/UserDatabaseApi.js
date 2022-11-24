@@ -59,19 +59,18 @@ class UserDatabaseApi {
 
     /** Get all Journal entries */
     static async getEntries(user_id){
-        let res = await this.request(`/users/${user_id}/journal-entries`);
+        let res = await this.request(`/journals/${user_id}/journal-entries`);
         return res.journalEntries;
     }
 
     /** Create Journal entry */
     static async journalMovieReview(user_id, data){
-        let res = await this.request(`/users/${user_id}/journal`, data, "post");
+        let res = await this.request(`/journals/${user_id}`, data, "post");
         return res.journalEntry;
     }
 
     /** Delete Journal entry */
     static async deleteEntry(entry_id, data){
-        console.log(entry_id);
         let res = await this.request(`/journals/${entry_id}`, data, "delete");
         return res.journalEntry;
     }
@@ -81,13 +80,13 @@ class UserDatabaseApi {
     /** Add favorite movie */
     static async addFavorite(user_id, movie_id){
         console.log("addFavorite called", movie_id);
-        let res = await this.request(`/users/${user_id}/favorites/${movie_id}`, movie_id, "post");
+        let res = await this.request(`/movies/${user_id}/favorites/${movie_id}`, movie_id, "post");
         return res.favorites;
     }
 
     /** Get favorites list */
     static async getFavorites(user_id){
-        let res = await this.request(`/users/${user_id}/favorites`);
+        let res = await this.request(`/movies/${user_id}/favorites`);
         return res.favorites;
     }
 
@@ -95,14 +94,14 @@ class UserDatabaseApi {
     /** Add seen movie */
     static async addSeen(user_id, movie_id){
         console.log("addSeen called", movie_id);
-        let res = await this.request(`/users/${user_id}/seen/${movie_id}`, movie_id, "post");
+        let res = await this.request(`/movies/${user_id}/seen/${movie_id}`, movie_id, "post");
         return res.seen;
     }
 
     /** Get seen movies list */
     static async getSeenMovies(user_id){
         console.log("getSeenMovies in UserDatabaseAPI running:",user_id)
-        let res = await this.request(`/users/${user_id}/seen`)
+        let res = await this.request(`/movies/${user_id}/seen`)
         return res.seen;
     }
 
@@ -111,14 +110,14 @@ class UserDatabaseApi {
     /** Rate a movie. */
 
     static async rateMovie(movie_id){
-        let res = await this.post(`/movie/${movie_id}/rating`);
+        let res = await this.post(`/movies/${movie_id}/rating`);
         return res.movie_id;
 }
 
     /** Delete movie rating. */
     
     static async deleteMovieRating(movie_id){
-        let res = await this.delete(`/movie/${movie_id}/rating`)
+        let res = await this.delete(`/movies/${movie_id}/rating`)
         return res.movie_id;
     } 
    
