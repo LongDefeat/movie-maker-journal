@@ -81,7 +81,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
               <div>Avg Rating: {rating}%</div>
               <div>{date}</div>
             </Card.Text>
-                <Row>
+                <Row className="justify-content-center">
                   <Col className="col-auto">
                     <OverlayTrigger
                       placement="bottom"
