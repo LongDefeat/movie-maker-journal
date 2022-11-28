@@ -50,6 +50,8 @@ function MovieDetail(){
       day: "numeric",
     });
 
+    const currencyRevenue = (revenue).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
     const castMembers = movie.cast;
     console.log(castMembers);
 
@@ -90,7 +92,7 @@ function MovieDetail(){
                         <h1 className="movie-title">{original_title} ({year})</h1>
                         <p><span style={{border: '1px solid white', padding:'5px', borderRadius:'10px'}}> PG-13</span> • {date} • {runtime} minutes</p>
                         <p>Overview: {overview}</p>
-                        <p>Worldwide Revenue: ${revenue}</p>
+                        <p>Worldwide Revenue: ${currencyRevenue}</p>
                         <p>Average User Rating: {rating}%</p>
                         <Button onClick={() => setModalShow(true)}variant="outline-primary" color="success" className="font-weight-bold">Log Movie <FaPencilAlt /></Button>
                     </Col>
