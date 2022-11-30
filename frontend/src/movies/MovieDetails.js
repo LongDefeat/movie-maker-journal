@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MovieDatabaseApi from "../api/MovieDatabaseApi";
-import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import JournalForm from "../journal/JournalForm";
-import DeleteIcon from '@mui/material/Button';
 import UserContext from "../auth/UserContext";
 import { FaPencilAlt } from "react-icons/fa";
 import ActorCard from "../actors/ActorCard";
 import "./MovieDetails.css";
 import LoadingSpinner from "../common/LoadingSpinner";
+import MovieRecommendations from "./MovieRecommendations";
 
 
 
@@ -53,8 +53,7 @@ function MovieDetail(){
     const currencyRevenue = (revenue).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
     const castMembers = movie.cast;
-    console.log(castMembers);
-
+  
 
     function MyVerticallyCenteredModal(props) {
         return (
@@ -110,6 +109,9 @@ function MovieDetail(){
                         </>
                       )
                     })}
+                </Row>
+                <Row>
+                    <MovieRecommendations movie={id} />
                 </Row> 
             </Container>
         

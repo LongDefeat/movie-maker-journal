@@ -82,6 +82,20 @@ router.get('/movie/:movie_id', async (req, res, next) => {
     }
 });
 
+router.get('/movie/:movie_id/recommendations', async (req, res, next)=> {
+    const {movie_id} = req.params;
+    try{
+        const response = await axios.get(`${BASE_URL}/movie/${movie_id}/recommendations`,{
+            params:{
+                api_key: API_KEY
+            }
+        });
+        return res.send(response.data)
+    } catch(err){
+        res.send(NotFoundError)
+    }
+});
+
 /** Get watch providers 
  * 
  * /movie/{movie_id}/watch/providers

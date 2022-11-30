@@ -53,6 +53,11 @@ class MovieDatabaseApi {
         return res;
     }
 
+    /** Get Movie Recommendations */
+    static async getMovieRecommendations(movie_id){
+        let res = await this.request(`moviedb/movie/${movie_id}/recommendations`, {movie_id})
+    }
+
     /** Search movie */
     static async searchMovie(searchText){
         let res = await this.request(`/moviedb/search/`, {searchText});

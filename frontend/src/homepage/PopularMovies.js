@@ -12,8 +12,8 @@ export default function PopularMovies(){
         }
         getPopularMovies();
     }, []);
-    if (!movies) return LoadingSpinner
-    console.log(movies);
+    if (!movies) return LoadingSpinner;
+    
     
     return (
         <>
