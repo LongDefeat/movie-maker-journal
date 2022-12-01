@@ -90,7 +90,7 @@ router.get('/movie/:movie_id/recommendations', async (req, res, next)=> {
                 api_key: API_KEY
             }
         });
-        return res.send(response.data)
+        return res.json(response.data)
     } catch(err){
         res.send(NotFoundError)
     }

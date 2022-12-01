@@ -73,7 +73,7 @@ function MovieCard({ id, title, poster, overview, voteAverage, releaseDate }) {
   return (
     <>
       <div>
-        <Card className="text-dark mb-3">
+        <Card className="text-dark mb-3 MovieCard">
           <Card.Img variant="top" src={`${fullImagePath}`} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>

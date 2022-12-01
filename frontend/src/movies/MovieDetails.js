@@ -111,7 +111,7 @@ function MovieDetail(){
                     })}
                 </Row>
                 <Row>
-                    <MovieRecommendations movie={id} />
+                    <MovieRecommendations movie_id={id} />
                 </Row> 
             </Container>
         

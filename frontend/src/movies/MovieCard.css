@@ -1,3 +1,7 @@
+.MovieCard{
+    min-height: 531.812px;
+}
+
 .MovieCard-text{
     height: 200px;
     overflow: scroll;
